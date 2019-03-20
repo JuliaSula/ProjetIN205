@@ -12,14 +12,13 @@ import com.excilys.librarymanager.persistence.ConnectionManager;
 import java.sql.*;
 public class EmpruntDaoImpl implements EmpruntDao{
 	
-	public List<Emprunt> getList() throws DaoException,SQLException{
-	
+	public List<Emprunt> getList() throws DaoException{
 	ArrayList<Emprunt> empruntList = new ArrayList<Emprunt>();
-		 Connection connection = ConnectionManager.getConnection();
+	Connection connection = null;
 	     PreparedStatement selectPreparedStatement = null;
 	     String SelectQuery = "SELECT * FROM emprunt";
 	     try {
-	    	 connection.setAutoCommit(false);
+	    	 connection = ConnectionManager.getConnection();
 	    	 selectPreparedStatement = connection.prepareStatement(SelectQuery);
 	         ResultSet rs = selectPreparedStatement.executeQuery();
 	         
