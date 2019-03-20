@@ -37,6 +37,36 @@ public class Membre {
 	public Abonnement getMembreAbonnement() {
 		return this.abonnement;
 	}
+	
+	/*SETTERS*/
+	public void setIdMembre(int id)
+	{
+		this.idMembre = id;
+	}
+	public void setMembreNom(String nom) 
+	{
+		this.nom = nom;
+	}
+	public void setMembrePrenom(String prenom) 
+	{
+		this.prenom = prenom;
+	}
+	public void setMembreAdresse(String adresse)
+	{
+		this.adresse = adresse;
+	}
+	public void setMembreMail(String mail)
+	{
+		this.mail = mail;
+	}	
+	public void setMembreTelephone(String tel)
+	{
+		this.telephone = tel;
+	}
+	public void setMembreAbonnement(Abonnement abo) {
+		this.abonnement = abo;
+	}
+	
 	/*Constructeur*/
 	public Membre()
 	{}
