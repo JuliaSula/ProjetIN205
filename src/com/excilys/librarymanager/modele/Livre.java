@@ -14,7 +14,7 @@ public class Livre {
 	public String getAuteur() {
 		return this.auteur;	
 	}
-	public String geIsbn() {
+	public String getIsbn() {
 		return this.isbn;	
 	}
 	public int getIdLivre()
@@ -22,6 +22,22 @@ public class Livre {
 		return this.idLivre;
 	}
 	
+	public void setTitre(String titre)
+	{
+		this.titre=titre;
+	}
+	public void setAuteur(String auteur)
+	{
+		this.auteur=auteur;
+	}
+	public void setIsbn(String isbn)
+	{
+		this.isbn=isbn;
+	}
+	public void setIdLivre(int id)
+	{
+		this.idLivre=id;
+	}
 	
 	@Override
 	public String toString() {
