@@ -199,28 +199,26 @@ public class LivreDaoImpl implements LivreDao{
 			rs = preparedStatement.executeQuery();
 			count=rs.getInt("count");
 			System.out.println("UPDATE: " + count);
-		}
-		catch (SQLException e) {
+		}catch (SQLException e) {
 			throw new DaoException("Problème lors compteur le film: " , e);
+		}finally {
+			try {
+				rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				preparedStatement.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
-	 finally {
-		try {
-			rs.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			preparedStatement.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			connection.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
 		return count;
 	}
-	}
+}
