@@ -12,24 +12,42 @@ LocalDate dateRetour;
 
 /*Fonctions de acces du type get*/
 
+/* GETTERS */
 public int getIdEmprunt()
 {
-return idEmprunt;
+	return idEmprunt;
 }
 public int getIdLivre()
 {
-return livre.getIdLivre();
+	return livre.getIdLivre();
 }
 public int getIdMembre()
 {
-return this.membre.getIdMembre();
+	return this.membre.getIdMembre();
 }
 
+<<<<<<< HEAD
 public LocalDate getDateEmprunt()
 {
 return this.dateEmprunt;
 }
 
+=======
+/*SETTERS*/
+
+public void setIdEmprunt(int id)
+{
+	this.idEmprunt = id;
+}
+public void setIdLivre(int idl)
+{
+	this.livre.setIdLivre(idl);
+}
+public void setIdMembre(int idm)
+{
+	this.membre.setIdMembre(idm);
+}
+>>>>>>> fdd415e7725be626bdb9685445cccf65e5cf0d8c
 
 public Emprunt()
 {}

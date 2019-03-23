@@ -16,14 +16,22 @@ import com.excilys.librarymanager.persistence.ConnectionManager;
 
 public class MembreDaoImpl implements MembreDao{
 	
+	/*Implementation Singleton*/
+	private static MembreDaoImpl instance;
+	private MembreDaoImpl() { }
+	public static MembreDaoImpl getInstance() {
+		if(instance == null) {
+			instance = new MembreDaoImpl();
+		}
+		return instance;
+	}
+		
 	private static final String GET_MEMBRES_QUERY = "SELECT id, nom, prenom, adresse, email, telephone, abonnement FROM membre ORDER BY nom, prenom";
 	private static final String GET_BY_ID_QUERY = "SELECT id, nom, prenom, adresse, email, telephone, abonnement FROM membre WHERE id = ?";
 	private static final String CREATE_QUERY = "	INSERT INTO membre(nom, prenom, adresse, email, telephone, abonnement)\r\n" + "	VALUES (?, ?, ?, ?, ?, ?);";
 	private static final String UPDATE_QUERY = "UPDATE membre SET nom = ?, prenom = ?, adresse = ?, email = ?, telephone = ?, abonnement = ? WHERE id = ?;";
 	private static final String DELETE_QUERY = "DELETE FROM membre WHERE id = ?;";
 	private static final String COUNT_QUERY = "SELECT COUNT(id) AS count FROM membre;";
-	
-
 	
 	@Override
 	public List<Membre> getList() throws DaoException {
@@ -216,8 +224,40 @@ public class MembreDaoImpl implements MembreDao{
 
 	@Override
 	public int count() throws DaoException {
-		// TODO Auto-generated method stub
-		return 0;
+		int count;
+		ResultSet rs=null;
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		try {
+			connection = ConnectionManager.getConnection();
+			preparedStatement = connection.prepareStatement(COUNT_QUERY);
+			rs = preparedStatement.executeQuery();
+			if(rs.next()){
+				count = rs.getInt(1);				
+			}
+			count=rs.getInt("count");
+			System.out.println("UPDATE: " + count);
+		}catch (SQLException e) {
+			throw new DaoException("Probleme lors compteur le membre: " , e);
+		}finally {
+			try {
+				rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				preparedStatement.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return count;
 	}
 
 }
