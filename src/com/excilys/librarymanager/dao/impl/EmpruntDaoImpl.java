@@ -60,7 +60,6 @@ public class EmpruntDaoImpl implements EmpruntDao{
 			"INNER JOIN livre ON livre.id = e.idLivre\n" + 
 			"WHERE dateRetour IS NULL AND livre.id = ?;";
 	
-	private static final String DELETE_QUERY = "DELETE FROM livre WHERE id = ?;";
 	private static final String COUNT_QUERY = "SELECT COUNT(id) AS count FROM emprunt;";
 	
 	
@@ -283,8 +282,11 @@ public class EmpruntDaoImpl implements EmpruntDao{
 			preparedStatement.setInt(1, id);
 			rs = preparedStatement.executeQuery();
 			if(rs.next()) {
-			//	emprunt.setIdMembre(rs.getInt("id"));
-			//	membre.setMembreNom(rs.getString("nom"));
+				emprunt.setIdMembre(rs.getInt("idMembre"));
+				emprunt.setIdLivre(rs.getInt("idLivre"));
+				emprunt.setIdEmprunt(rs.getInt("idEmprunt"));
+				
+				
 			//	membre.setMembrePrenom(rs.getString("prenom"));
 			//	membre.setMembreAdresse(rs.getString("adresse"));
 			//	membre.setMembreMail(rs.getString("mail"));
