@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class LivreDaoImpl implements LivreDao{
 		}
 		return instance;
 	}
-	
+	private static final String CREATE_QUERY="INSERT INTO livre(titre, auteur, isbn) VALUES (?, ?, ?);";
 	private static final String GET_LIVRES_QUERY = "SELECT * FROM livre;";
 	private static final String GET_BY_ID_QUERY = "SELECT id, titre, auteur, isbn FROM livre WHERE id = ?;";
 	private static final String UPDATE_QUERY = "UPDATE livre SET titre = ?, auteur = ?, isbn = ? WHERE id = ?;";
@@ -119,13 +120,51 @@ public class LivreDaoImpl implements LivreDao{
 			return livre;
 	} 
 	
-
 	@Override
 	public int create(String titre, String auteur, String isbn) throws DaoException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+		int id=-1;
+		ResultSet res= null; 
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		try {
+			connection = ConnectionManager.getConnection();
+			preparedStatement = connection.prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS);
+			preparedStatement.setString(1, titre);
+			preparedStatement.setString(2, auteur);
+			preparedStatement.setString(3, isbn);
+			
+			preparedStatement.executeUpdate();
+			res = preparedStatement.getGeneratedKeys();
+			if(res.next()){
+				id = res.getInt(1);				
+			}
 
+			System.out.println("CREATE: " + id);
+			}catch (SQLException e) {
+			throw new DaoException("Problème lors de la création du livre: " , e);}
+			finally {
+				// Ici pour bien faire les choses on doit fermer les objets utilisés dans
+				// des blocs séparés afin que les exceptions levées n'empèchent pas la fermeture des autres !
+				// la logique est la même pour les autres méthodes. Pour rappel, le bloc finally sera toujours exécuté !
+				try {
+					res.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				try {
+					preparedStatement.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				try {
+					connection.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			return id;
+		}
+	
 	@Override
 	public void update(Livre livre) throws DaoException {
 		//ResultSet rs=null;
@@ -143,7 +182,7 @@ public class LivreDaoImpl implements LivreDao{
 			System.out.println("UPDATE: " + livre);
 		}
 	catch (SQLException e) {
-		throw new DaoException("Problème lors de la mise à jour du luivre: " + livre, e);
+		throw new DaoException("Problème lors de la mise à jour du livre: " + livre, e);
 	} finally {
 		
 		try {
@@ -193,8 +232,18 @@ public class LivreDaoImpl implements LivreDao{
 	public int count() throws DaoException {
 //<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
 		int count=0;
+<<<<<<< HEAD
 //>>>>>>> fdd415e7725be626bdb9685445cccf65e5cf0d8c
+=======
+=======
+>>>>>>> 6c029172036b1a4443eb31b6e038931332a62950
+		int count;
+>>>>>>> fdd415e7725be626bdb9685445cccf65e5cf0d8c
+>>>>>>> 5b30723da2ae8dcdb411b8b71400a87029132a77
 		ResultSet rs=null;
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
@@ -231,4 +280,8 @@ public class LivreDaoImpl implements LivreDao{
 		}
 		return count;
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4943fc45e5813fa6075e646ada9bfd16433019fa
 }
