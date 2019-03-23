@@ -83,11 +83,10 @@ public class EmpruntDaoImpl implements EmpruntDao{
 	         Membre m = new Membre(rs.getString("nom"), 
 					  rs.getString("prenom"),
 					  rs.getString("adresse"),
-					  rs.getString("mail"),
+					  rs.getString("email"),
 					  rs.getString("telephone"),
 					  Abonnement.valueOf(rs.getString("abonnement")));;
-	         Emprunt emprunt=new Emprunt(m,livre, 
-	        		 					LocalDate.from((TemporalAccessor) rs.getDate("dateEmprunt")));
+	         Emprunt emprunt=new Emprunt(m,livre,rs.getDate("dateEmprunt").toLocalDate());
 	         
 	         empruntList.add(emprunt);
 	         System.out.println("GET: " + emprunt);
@@ -137,7 +136,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		         Membre m = new Membre(rs.getString("nom"), 
 						  rs.getString("prenom"),
 						  rs.getString("adresse"),
-						  rs.getString("mail"),
+						  rs.getString("email"),
 						  rs.getString("telephone"),
 						  Abonnement.valueOf(rs.getString("abonnement")));;
 		         Emprunt emprunt=new Emprunt(m,livre, 
@@ -188,7 +187,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		         Membre m = new Membre(rs.getString("nom"), 
 						  rs.getString("prenom"),
 						  rs.getString("adresse"),
-						  rs.getString("mail"),
+						  rs.getString("email"),
 						  rs.getString("telephone"),
 						  Abonnement.valueOf(rs.getString("abonnement")));;
 		         Emprunt emprunt=new Emprunt(m,livre, 
@@ -376,7 +375,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 			System.out.println("UPDATE: " + emprunt);
 		}
 	catch (SQLException e) {
-		throw new DaoException("Problème lors de la mise à jour du emprunt: " + emprunt, e);
+		throw new DaoException("Probleme lors de la mise a jour du emprunt: " + emprunt, e);
 	} finally {
 		
 		try {
@@ -408,7 +407,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 			System.out.println("COUNT: " + count);
 		}
 		catch (SQLException e) {
-			throw new DaoException("Problème lors compteur le emprunt: " , e);
+			throw new DaoException("Probleme lors compteur le emprunt: " , e);
 		}
 	 finally {
 		try {

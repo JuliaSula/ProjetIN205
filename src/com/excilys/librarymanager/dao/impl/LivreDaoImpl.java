@@ -99,7 +99,7 @@ public class LivreDaoImpl implements LivreDao{
 	         }
 			
 			}catch (SQLException e) {
-	 			throw new DaoException("Problème lors de la récupération du livre: id=" + id, e);
+	 			throw new DaoException("Probleme lors de la recuperation du livre: id=" + id, e);
 		}finally {
 		
 			try{
@@ -141,11 +141,8 @@ public class LivreDaoImpl implements LivreDao{
 
 			System.out.println("CREATE: " + id);
 			}catch (SQLException e) {
-			throw new DaoException("Problème lors de la création du livre: " , e);}
+			throw new DaoException("Probleme lors de la creation du livre: " , e);}
 			finally {
-				// Ici pour bien faire les choses on doit fermer les objets utilisés dans
-				// des blocs séparés afin que les exceptions levées n'empèchent pas la fermeture des autres !
-				// la logique est la même pour les autres méthodes. Pour rappel, le bloc finally sera toujours exécuté !
 				try {
 					res.close();
 				} catch (Exception e) {
@@ -182,7 +179,7 @@ public class LivreDaoImpl implements LivreDao{
 			System.out.println("UPDATE: " + livre);
 		}
 	catch (SQLException e) {
-		throw new DaoException("Problème lors de la mise à jour du livre: " + livre, e);
+		throw new DaoException("Probleme lors de la mise a jour du livre: " + livre, e);
 	} finally {
 		
 		try {
@@ -230,24 +227,7 @@ public class LivreDaoImpl implements LivreDao{
 
 	@Override
 	public int count() throws DaoException {
-<<<<<<< HEAD
 		int count=0;
-=======
-//<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-
-		int count=0;
-<<<<<<< HEAD
-//>>>>>>> fdd415e7725be626bdb9685445cccf65e5cf0d8c
-=======
-=======
->>>>>>> 6c029172036b1a4443eb31b6e038931332a62950
-		int count;
->>>>>>> fdd415e7725be626bdb9685445cccf65e5cf0d8c
->>>>>>> 5b30723da2ae8dcdb411b8b71400a87029132a77
->>>>>>> 4cb1b42881babcbe164f1e2666659b873ebac66f
 		ResultSet rs=null;
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
@@ -259,16 +239,9 @@ public class LivreDaoImpl implements LivreDao{
 				count=rs.getInt("count");
 			}
 			System.out.println("UPDATE: " + count);
-<<<<<<< HEAD
 		}
 		catch (SQLException e) {
 			throw new DaoException("Problème lors compteur le livre: " , e);
-=======
-//<<<<<<< HEAD
-		}
-		catch (SQLException e) {
-			throw new DaoException("Problème lors compteur le film: " , e);
->>>>>>> 4cb1b42881babcbe164f1e2666659b873ebac66f
 		}finally {
 			try {
 				rs.close();
@@ -285,11 +258,6 @@ public class LivreDaoImpl implements LivreDao{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-<<<<<<< HEAD
-=======
-			
-//>>>>>>> fdd415e7725be626bdb9685445cccf65e5cf0d8c
->>>>>>> 4cb1b42881babcbe164f1e2666659b873ebac66f
 		}
 		return count;
 	}

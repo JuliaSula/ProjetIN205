@@ -47,9 +47,10 @@ public class MembreDaoImpl implements MembreDao{
 				Membre m = new Membre(rs.getString("nom"), 
 									  rs.getString("prenom"),
 									  rs.getString("adresse"),
-									  rs.getString("mail"),
+									  rs.getString("email"),
 									  rs.getString("telephone"),
 									  Abonnement.valueOf(rs.getString("abonnement")));
+				m.setIdMembre(rs.getInt("id"));
 				membres.add(m);
 			}
 			System.out.println("GET: " + membres);
@@ -91,7 +92,7 @@ public class MembreDaoImpl implements MembreDao{
 				membre.setMembreNom(rs.getString("nom"));
 				membre.setMembrePrenom(rs.getString("prenom"));
 				membre.setMembreAdresse(rs.getString("adresse"));
-				membre.setMembreMail(rs.getString("mail"));
+				membre.setMembreMail(rs.getString("email"));
 				membre.setMembreTelephone(rs.getString("telephone"));
 				membre.setMembreAbonnement(Abonnement.valueOf(rs.getString("abonnement")));
 			}
