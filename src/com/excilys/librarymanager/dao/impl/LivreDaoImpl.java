@@ -48,7 +48,9 @@ public class LivreDaoImpl implements LivreDao{
 	         rs = preparedStatement.executeQuery();
 	         /*Prende des valeurs tant qu`il y a et met dans la liste*/
 	         while (rs.next()) {
-	         Livre livre= new Livre(rs.getString("titre"), rs.getString("auteur"), rs.getString("isbn"));
+	         Livre livre= new Livre(rs.getString("titre"),
+	        		 				rs.getString("auteur"),
+	        		 				rs.getString("isbn"));
 	         livreList.add(livre);
 	         }
 		} 
@@ -228,8 +230,16 @@ public class LivreDaoImpl implements LivreDao{
 
 	@Override
 	public int count() throws DaoException {
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+		int count=0;
+=======
+>>>>>>> 6c029172036b1a4443eb31b6e038931332a62950
 		int count;
+>>>>>>> fdd415e7725be626bdb9685445cccf65e5cf0d8c
 		ResultSet rs=null;
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
@@ -237,8 +247,15 @@ public class LivreDaoImpl implements LivreDao{
 			connection = ConnectionManager.getConnection();
 			preparedStatement = connection.prepareStatement(COUNT_QUERY);
 			rs = preparedStatement.executeQuery();
-			count=rs.getInt("count");
+			if(rs.next())
+			{count=rs.getInt("count");
+			}
 			System.out.println("UPDATE: " + count);
+<<<<<<< HEAD
+		}
+		catch (SQLException e) {
+			throw new DaoException("Problème lors compteur le livre: " , e);
+=======
 		}catch (SQLException e) {
 			throw new DaoException("Problème lors compteur le film: " , e);
 		}finally {
@@ -258,6 +275,7 @@ public class LivreDaoImpl implements LivreDao{
 				e.printStackTrace();
 			}
 			
+>>>>>>> fdd415e7725be626bdb9685445cccf65e5cf0d8c
 		}
 		return count;
 	}

@@ -130,9 +130,9 @@ public class MembreDaoImpl implements MembreDao{
 			preparedStatement = connection.prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, nom);
 			preparedStatement.setString(2, prenom);
-			preparedStatement.setString(1, adresse);
-			preparedStatement.setString(1, email);
-			preparedStatement.setString(1, telephone);
+			preparedStatement.setString(4, adresse);
+			preparedStatement.setString(5, email);
+			preparedStatement.setString(6, telephone);
 			preparedStatement.executeUpdate();
 			rs = preparedStatement.getGeneratedKeys();
 			if(rs.next()){
@@ -207,7 +207,7 @@ public class MembreDaoImpl implements MembreDao{
 			preparedStatement.close();
 			connection.close();
 		} catch (SQLException e) {
-			throw new DaoException("Probl�me lors de la suppression du film: " + e);
+			throw new DaoException("Probleme lors de la suppression du film: " + e);
 		}  finally {
 			try {
 				preparedStatement.close();
