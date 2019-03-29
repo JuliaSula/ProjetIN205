@@ -20,7 +20,7 @@ public class LivreServiceImpl implements LivreService{
 
 	@Override
 	public List<Livre> getList() throws ServiceException {
-		LivreDao livreDao = LivreDaoImpl.getInstance();
+		LivreDao livreDao = LivreDaoImpl.getInstance();//Appele l`intance de dao
 		List<Livre> livres = new ArrayList<>();		
 		try {
 			livres = livreDao.getList();
@@ -33,6 +33,7 @@ public class LivreServiceImpl implements LivreService{
 	@Override
 	public List<Livre> getListDispo() throws ServiceException {
 		// TODO Auto-generated method stub
+		//Depende d'emprunt
 		return null;
 	}
 
@@ -50,7 +51,7 @@ public class LivreServiceImpl implements LivreService{
 
 	@Override
 	public int create(String titre, String auteur, String isbn) throws ServiceException {
-		Livre livre = new Livre(titre, auteur, isbn);
+		//Livre livre = new Livre(titre, auteur, isbn);
 		LivreDao livreDao = LivreDaoImpl.getInstance();
 		int i = -1;
 		try {
@@ -88,7 +89,14 @@ public class LivreServiceImpl implements LivreService{
 	@Override
 	public int count() throws ServiceException {
 		// TODO Auto-generated method stub
-		return 0;
+		LivreDao livreDao = LivreDaoImpl.getInstance();
+		int count=-1;
+		try {
+		count=livreDao.count();
+		} catch (DaoException e1) {
+			System.out.println(e1.getMessage());			
+		} 
+		return count;
 	}
 
 }
