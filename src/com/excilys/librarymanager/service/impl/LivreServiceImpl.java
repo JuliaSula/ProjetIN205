@@ -8,6 +8,7 @@ import com.excilys.librarymanager.dao.impl.LivreDaoImpl;
 import com.excilys.librarymanager.exception.DaoException;
 import com.excilys.librarymanager.exception.ServiceException;
 import com.excilys.librarymanager.modele.Livre;
+import com.excilys.librarymanager.service.EmpruntService;
 import com.excilys.librarymanager.service.LivreService;
 
 public class LivreServiceImpl implements LivreService{
@@ -25,16 +26,24 @@ public class LivreServiceImpl implements LivreService{
 		try {
 			livres = livreDao.getList();
 		} catch (DaoException e1) {
-			throw new ServiceException(e1.getMessage());			
+			System.out.println(e1.getMessage());			
 		}
 		return livres;
 	}
 
 	@Override
 	public List<Livre> getListDispo() throws ServiceException {
-		// TODO Auto-generated method stub
-		//Depende d'emprunt
-		return null;
+		EmpruntService empruntService = EmpruntServiceImpl.getInstance();//Appele l`intance de service
+		List<Livre> livreList = new ArrayList<>();
+		LivreDao livreDao = LivreDaoImpl.getInstance();
+		try {
+			for (int i = 0; i < livreDao.getList().size(); i++) {
+				if(empruntService.isLivreDispo(livreDao.getList().get(i).getIdLivre()))
+					livreList.add(livreDao.getList().get(i));	
+		}return livreList;
+		}catch (DaoException e1) {
+			throw new ServiceException(e1.getMessage());			
+		}
 	}
 
 	@Override
@@ -44,7 +53,7 @@ public class LivreServiceImpl implements LivreService{
 		try {
 			livre = livreDao.getById(id);
 		} catch (DaoException e1) {
-			throw new ServiceException(e1.getMessage());			
+			System.out.println(e1.getMessage());			
 		}
 		return livre;
 	}
@@ -59,7 +68,7 @@ public class LivreServiceImpl implements LivreService{
 		try {
 			i = livreDao.create(titre, auteur, isbn);
 		}  catch (DaoException e1) {
-			throw new ServiceException(e1.getMessage());			
+			System.out.println(e1.getMessage());			
 		}  catch (NullPointerException e) {
 			throw new ServiceException("Titre non informe" + e);
 		}
@@ -72,7 +81,7 @@ public class LivreServiceImpl implements LivreService{
 		try {
 			livreDao.update(livre);
 		} catch (DaoException e1) {
-			throw new ServiceException(e1.getMessage());			
+			System.out.println(e1.getMessage());			
 		} catch (NumberFormatException e2) {
 			throw new ServiceException("Erreur lors du parsing: id=" + e2);
 		}catch (NullPointerException e) {
@@ -86,7 +95,7 @@ public class LivreServiceImpl implements LivreService{
 		try {
 			livreDao.delete(id);
 		} catch (DaoException e1) {
-			throw new ServiceException(e1.getMessage());			
+			System.out.println(e1.getMessage());			
 		} catch (NumberFormatException e2) {
 			throw new ServiceException("Erreur lors du parsing: id=" + id, e2);
 		}
@@ -100,7 +109,7 @@ public class LivreServiceImpl implements LivreService{
 		try {
 		count=livreDao.count();
 		} catch (DaoException e1) {
-			throw new ServiceException(e1.getMessage());			
+			System.out.println(e1.getMessage());			
 		} 
 		return count;
 	}
