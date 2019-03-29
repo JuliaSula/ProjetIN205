@@ -2,10 +2,13 @@ package com.excilys.librarymanager.service.impl;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.excilys.librarymanager.dao.EmpruntDao;
+import com.excilys.librarymanager.dao.LivreDao;
 import com.excilys.librarymanager.dao.impl.EmpruntDaoImpl;
+import com.excilys.librarymanager.dao.impl.LivreDaoImpl;
 import com.excilys.librarymanager.exception.DaoException;
 import com.excilys.librarymanager.exception.ServiceException;
 import com.excilys.librarymanager.modele.Emprunt;
@@ -21,7 +24,8 @@ public class EmpruntServiceImpl implements EmpruntService{
 		try {
 			emprunts = empruntDao.getList();
 		} catch (DaoException e1) {
-			System.out.println(e1.getMessage());			
+			throw new ServiceException(e1.getMessage(), e1);
+			//System.out.println(e1.getMessage());			
 		}
 		return emprunts;
 	}
@@ -33,7 +37,8 @@ public class EmpruntServiceImpl implements EmpruntService{
 		try {
 			emprunts = empruntDao.getListCurrent();
 		} catch (DaoException e1) {
-			System.out.println(e1.getMessage());			
+			throw new ServiceException(e1.getMessage(), e1);
+			//System.out.println(e1.getMessage());			
 		}
 		return emprunts;
 	}
@@ -45,7 +50,8 @@ public class EmpruntServiceImpl implements EmpruntService{
 		try {
 			emprunts = empruntDao.getListCurrentByMembre(idMembre);
 		} catch (DaoException e1) {
-			System.out.println(e1.getMessage());			
+			throw new ServiceException(e1.getMessage(), e1);
+			//System.out.println(e1.getMessage());			
 		}
 		return emprunts;
 	}
@@ -57,7 +63,8 @@ public class EmpruntServiceImpl implements EmpruntService{
 		try {
 			emprunts = empruntDao.getListCurrentByLivre(idLivre);
 		} catch (DaoException e1) {
-			System.out.println(e1.getMessage());			
+			throw new ServiceException(e1.getMessage(), e1);
+			//System.out.println(e1.getMessage());			
 		}
 		return emprunts;
 	}
@@ -69,7 +76,8 @@ public class EmpruntServiceImpl implements EmpruntService{
 		try {
 			emprunt = empruntDao.getById(id);
 		} catch (DaoException e1) {
-			System.out.println(e1.getMessage());			
+			throw new ServiceException(e1.getMessage(), e1);
+			//System.out.println(e1.getMessage());			
 		}
 		return emprunt;
 	}
@@ -80,32 +88,67 @@ public class EmpruntServiceImpl implements EmpruntService{
 		try {
 			empruntDao.create(idMembre, idLivre, dateEmprunt);
 		}  catch (DaoException e1) {
-			System.out.println(e1.getMessage());			
+			throw new ServiceException(e1.getMessage(), e1);
+			//System.out.println(e1.getMessage());			
 		}
 	}
 
 	@Override
 	public void returnBook(int id) throws ServiceException {
-		// TODO Auto-generated method stub
+		EmpruntDao empruntDao = EmpruntDaoImpl.getInstance();
+	   try {
+		Emprunt emprunt= empruntDao.getById(id);
+		emprunt.setDateRetour(LocalDate.now());
+		empruntDao.update(emprunt);
+	   }catch(DaoException e1)
+	   {
+		   System.out.println(e1.getMessage());
+	   }
 		
 	}
 
 	@Override
 	public int count() throws ServiceException {
-		// TODO Auto-generated method stub
-		return 0;
+		EmpruntDao empruntDao = EmpruntDaoImpl.getInstance();
+		int count=-1;
+		try {
+		count=empruntDao.count();
+		} catch (DaoException e1) {
+			throw new ServiceException(e1.getMessage(), e1);
+		//	System.out.println(e1.getMessage());			
+		} 
+		return count;
 	}
 
 	@Override
 	public boolean isLivreDispo(int idLivre) throws ServiceException {
-		// TODO Auto-generated method stub
-		return false;
+		EmpruntDao empruntDao = EmpruntDaoImpl.getInstance();
+	try {
+		/*Verifie si le livre choisi est en la liste d`emprunts atuale sinon reponde true*/
+		return empruntDao.getListCurrentByLivre(idLivre)==null;
+	}	catch (DaoException e1) {
+		throw new ServiceException(e1.getMessage(), e1);
+	//	System.out.println(e1.getMessage());			
+	} 
 	}
 
 	@Override
 	public boolean isEmpruntPossible(Membre membre) throws ServiceException {
-		// TODO Auto-generated method stub
-		return false;
+		EmpruntDao empruntDao = EmpruntDaoImpl.getInstance();
+		int i=-1;
+		try {
+			switch(membre.getMembreAbonnement()) {
+				case BASIC: i=2;break;
+				case PREMIUM:i=5;break;
+				case VIP:i=10;break;
+		}
+			
+			return empruntDao.getListCurrentByMembre(membre.getIdMembre()).size()<i;
+		}
+		catch (DaoException e1) {
+			throw new ServiceException(e1.getMessage(), e1);
+		//	System.out.println(e1.getMessage());			
+		} 
 	}
 
 }
