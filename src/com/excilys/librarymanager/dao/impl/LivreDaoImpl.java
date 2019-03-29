@@ -231,10 +231,7 @@ public class LivreDaoImpl implements LivreDao{
 	@Override
 	public int count() throws DaoException {
 		int count=0;
-<<<<<<< HEAD
 
-=======
->>>>>>> d4a062f095afaea9b72969ca576496b54401b88f
 		ResultSet rs=null;
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;

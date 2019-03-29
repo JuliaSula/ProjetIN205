@@ -1,7 +1,5 @@
 package com.excilys.librarymanager.test;
 
-<<<<<<< HEAD
-
 import java.time.LocalDate;
 
 //import com.ex
@@ -13,18 +11,11 @@ import com.excilys.librarymanager.exception.DaoException;
 import com.excilys.librarymanager.modele.Emprunt;
 import com.excilys.librarymanager.modele.Livre;
 import com.excilys.librarymanager.modele.Membre;
-=======
-import com.excilys.librarymanager.dao.impl.EmpruntDaoImpl;
-import com.excilys.librarymanager.dao.impl.LivreDaoImpl;
-import com.excilys.librarymanager.dao.impl.MembreDaoImpl;
-import com.excilys.librarymanager.exception.DaoException;
 
->>>>>>> d4a062f095afaea9b72969ca576496b54401b88f
+
 public class DaoTest {
 
 	public static void main(String[] args) throws DaoException {
-		// TODO Auto-generated method stub
-<<<<<<< HEAD
 		
 		/*Test Livre*/
 		LivreDaoImpl l1= LivreDaoImpl.getInstance(); /*Initialise le instance de LivreDaoImpl*/
@@ -42,11 +33,11 @@ public class DaoTest {
 		l1.update(livre);
 		l1.getById(17);
 		l1.getList();
+		
 	/*Test Membre Dao*/
 		MembreDaoImpl m1=MembreDaoImpl.getInstance();
 		m1.getList();
 		m1.count();
-		
 		//m1.create(null, null, null, null, null);
 		//m1.delete(14);
 		m1.getList();
@@ -77,44 +68,6 @@ public class DaoTest {
 		//Livre livre=l1.getById(17);
 	  e1.update(emprunt);
 		e1.getById(8);
-		//e1.getList();
-=======
-		LivreDaoImpl l1= LivreDaoImpl.getInstance();
-		l1.count();
-		l1.create(null, null, null);
-		l1.getList();
-		//l1.delete(13);
-		l1.count();
-		l1.getList();
-		Livre livre= Livre('titre',' auteur', 'String isbn' );
-		l1.update(livre);
-		MembreDaoImpl m1=MembreDaoImpl.getInstance();
-		//System.out.println(m1.getList());
-		//System.out.println(l1.getList());
-		EmpruntDaoImpl e1= EmpruntDaoImpl.getInstance();
-		//System.out.println(e1.getList());
-		System.out.println(e1.getById(3));
-		//System.out.println(l1.count());
-		System.out.println(e1.getListCurrentByLivre(1));
-		//System.out.println(l1.);
-		//System.out.println(e1.getList());
-		//System.out.println(e1.getListCurrent());
-		//System.out.println(e1.getListCurrentByLivre(0));
-		//System.out.println(e1.getListCurrentByMembre(1));
-		//System.out.println(e1.create(0, 0, null))
 		
->>>>>>> d4a062f095afaea9b72969ca576496b54401b88f
-		
-		
-		
-
-	public static void main(String[] args) throws DaoException {
-		LivreDaoImpl l1 = LivreDaoImpl.getInstance();
-		MembreDaoImpl m1 = MembreDaoImpl.getInstance();
-		EmpruntDaoImpl e1 = EmpruntDaoImpl.getInstance();
-		System.out.println(l1.getList());
-		System.out.println(l1.getById(1));
-		e1.getList();
-		e1.getById(1);
-	}
+}
 }

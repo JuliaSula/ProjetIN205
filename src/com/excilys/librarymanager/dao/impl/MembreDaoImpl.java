@@ -50,12 +50,10 @@ public class MembreDaoImpl implements MembreDao{
 									  rs.getString("email"),
 									  rs.getString("telephone"),
 									  Abonnement.valueOf(rs.getString("abonnement")));
-<<<<<<< HEAD
+
 				membre.setIdMembre(rs.getInt("id"));
 				membreList.add(membre);
-=======
-				membreList.add(m);
->>>>>>> d4a062f095afaea9b72969ca576496b54401b88f
+
 			}
 			System.out.println("GET: " + membreList);
 		} catch (SQLException e) {
