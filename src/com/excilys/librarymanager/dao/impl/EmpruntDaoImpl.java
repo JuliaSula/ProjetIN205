@@ -90,8 +90,11 @@ public class EmpruntDaoImpl implements EmpruntDao{
 	         Emprunt emprunt=new Emprunt(m,livre, 
 	        		 					rs.getDate("dateEmprunt").toLocalDate());
 	         emprunt.setIdEmprunt(rs.getInt("id"));
+<<<<<<< HEAD
 	         if(rs.getDate("dateRetour")!=null)
 	        	 emprunt.setDateRetour(rs.getDate("dateRetour").toLocalDate());
+=======
+>>>>>>> d4a062f095afaea9b72969ca576496b54401b88f
 	         empruntList.add(emprunt);
 	         }
 	         System.out.println("GET: " + empruntList);
@@ -258,13 +261,19 @@ public class EmpruntDaoImpl implements EmpruntDao{
 						  rs.getString("email"),
 						  rs.getString("telephone"),
 						  Abonnement.valueOf(rs.getString("abonnement")));;
+<<<<<<< HEAD
 						  
+=======
+>>>>>>> d4a062f095afaea9b72969ca576496b54401b88f
 		         m.setIdMembre(rs.getInt("idMembre"));
 		         
 		         Emprunt emprunt=new Emprunt(m,livre, 
 		        		 					rs.getDate("dateEmprunt").toLocalDate());
+<<<<<<< HEAD
 		         //if(rs.getDate("dateRetour")!=null)
 		        	// emprunt.setDateRetour(rs.getDate("dateRetour").toLocalDate());
+=======
+>>>>>>> d4a062f095afaea9b72969ca576496b54401b88f
 		         emprunt.setIdEmprunt(rs.getInt("id"));
 		         empruntList.add(emprunt);
 		         System.out.println("GET CURRENT LIST BY LIVRE: " + emprunt);
@@ -319,9 +328,13 @@ public class EmpruntDaoImpl implements EmpruntDao{
 				emprunt.setIdMembre(rs.getInt("idMembre"));
 				emprunt.setIdLivre(rs.getInt("idLivre"));
 				emprunt.setIdEmprunt(rs.getInt("idEmprunt"));
+<<<<<<< HEAD
 				emprunt.setDateEmprunt(rs.getDate("dateEmprunt").toLocalDate());
 				if(rs.getDate("dateRetour")!=null)
 					 emprunt.setDateRetour(rs.getDate("dateRetour").toLocalDate());
+=======
+		
+>>>>>>> d4a062f095afaea9b72969ca576496b54401b88f
 				
 			
 			}
@@ -410,7 +423,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 			System.out.println("UPDATE: " + emprunt);
 		}
 	catch (SQLException e) {
-		throw new DaoException("Problème lors de la mise à jour du emprunt: " + emprunt, e);
+		throw new DaoException("Probleme lors de la mise a jour du emprunt: " + emprunt, e);
 	} finally {
 		
 		try {
@@ -442,7 +455,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 			System.out.println("COUNT: " + count);
 		}
 		catch (SQLException e) {
-			throw new DaoException("Problème lors compteur le emprunt: " , e);
+			throw new DaoException("Probleme lors compteur le emprunt: " , e);
 		}
 	 finally {
 		try {
