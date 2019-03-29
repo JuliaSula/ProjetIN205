@@ -15,7 +15,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 	/*Implementation Singleton*/
 	private static EmpruntDaoImpl instance;
 	private EmpruntDaoImpl() { }
-	public static EmpruntDaoImpl getInstance() {
+	public static EmpruntDao getInstance() {
 		if(instance == null) {
 			instance = new EmpruntDaoImpl();
 		}
