@@ -51,7 +51,10 @@ public class LivreServiceImpl implements LivreService{
 
 	@Override
 	public int create(String titre, String auteur, String isbn) throws ServiceException {
+<<<<<<< HEAD
 		//Livre livre = new Livre(titre, auteur, isbn);
+=======
+>>>>>>> 7f2c6ab710ae04aa7f3357784c6b4b235ba5ae47
 		LivreDao livreDao = LivreDaoImpl.getInstance();
 		int i = -1;
 		try {
