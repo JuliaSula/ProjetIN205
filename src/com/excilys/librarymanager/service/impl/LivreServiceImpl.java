@@ -51,10 +51,6 @@ public class LivreServiceImpl implements LivreService{
 
 	@Override
 	public int create(String titre, String auteur, String isbn) throws ServiceException {
-<<<<<<< HEAD
-		//Livre livre = new Livre(titre, auteur, isbn);
-=======
->>>>>>> 7f2c6ab710ae04aa7f3357784c6b4b235ba5ae47
 		LivreDao livreDao = LivreDaoImpl.getInstance();
 		int i = -1;
 		try {
@@ -74,6 +70,8 @@ public class LivreServiceImpl implements LivreService{
 			System.out.println(e1.getMessage());			
 		} catch (NumberFormatException e2) {
 			throw new ServiceException("Erreur lors du parsing: id=" + e2);
+		}catch (NullPointerException e) {
+			throw new ServiceException("Titre non informe" + e);
 		}
 	}
 
