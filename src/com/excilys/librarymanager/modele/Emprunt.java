@@ -25,10 +25,18 @@ public int getIdMembre()
 {
 	return this.membre.getIdMembre();
 }
+
 public LocalDate getDateEmprunt()
 {
 return this.dateEmprunt;
 }
+
+public LocalDate getDateRetour()
+{
+return this.dateRetour;
+}
+
+
 /*SETTERS*/
 
 public void setIdEmprunt(int id)
@@ -53,6 +61,18 @@ public void setIdMembre(int idm)
 	this.membre.setIdMembre(idm);
 }
 
+public void setDateRetour(LocalDate dateRetour)
+{
+	this.dateRetour=dateRetour;
+	}
+
+
+public void setDateEmprunt(LocalDate dateEmprunt)
+{
+	this.dateEmprunt=dateEmprunt;
+	}
+
+
 
 public Emprunt()
 {}
@@ -67,7 +87,7 @@ public Emprunt(Membre membre, Livre livre, LocalDate dateEmprunt)
 }
 @Override
 public String toString() {
-	return "Emprunt [idEmprunt=" + idEmprunt + ", livre=" + livre.toString() + ", membre=" + membre.toString() + ", dateEmprunt="
+	return "Emprunt [idEmprunt=" + idEmprunt + ", livre= " + livre.getIdLivre()+" titre= "+livre.getTitre() + ", membre= " + membre.getIdMembre() + " nom= "+membre.getMembreNom()+", dateEmprunt= "
 			+ dateEmprunt + ", dateRetour=" + dateRetour + "]";
 }
 

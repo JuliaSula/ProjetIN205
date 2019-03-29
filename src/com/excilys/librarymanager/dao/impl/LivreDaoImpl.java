@@ -176,6 +176,7 @@ public class LivreDaoImpl implements LivreDao{
 			preparedStatement.setString(1, livre.getTitre());
 			preparedStatement.setString(2, livre.getAuteur());
 			preparedStatement.setString(3, livre.getIsbn());
+			preparedStatement.setInt(4, livre.getIdLivre());
 			preparedStatement.executeUpdate();
 			
 			System.out.println("UPDATE: " + livre);
@@ -230,6 +231,7 @@ public class LivreDaoImpl implements LivreDao{
 	@Override
 	public int count() throws DaoException {
 		int count=0;
+
 		ResultSet rs=null;
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;

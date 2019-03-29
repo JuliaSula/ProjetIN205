@@ -44,13 +44,16 @@ public class MembreDaoImpl implements MembreDao{
 			preparedStatement = connection.prepareStatement(GET_MEMBRES_QUERY);
 			rs = preparedStatement.executeQuery();
 			while(rs.next()) {
-				Membre m = new Membre(rs.getString("nom"), 
+				Membre membre = new Membre(rs.getString("nom"), 
 									  rs.getString("prenom"),
 									  rs.getString("adresse"),
 									  rs.getString("email"),
 									  rs.getString("telephone"),
 									  Abonnement.valueOf(rs.getString("abonnement")));
-				membreList.add(m);
+
+				membre.setIdMembre(rs.getInt("id"));
+				membreList.add(membre);
+
 			}
 			System.out.println("GET: " + membreList);
 		} catch (SQLException e) {
@@ -130,9 +133,10 @@ public class MembreDaoImpl implements MembreDao{
 			preparedStatement = connection.prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, nom);
 			preparedStatement.setString(2, prenom);
-			preparedStatement.setString(4, adresse);
-			preparedStatement.setString(5, email);
-			preparedStatement.setString(6, telephone);
+			preparedStatement.setString(3, adresse);
+			preparedStatement.setString(4, email);
+			preparedStatement.setString(5, telephone);
+			preparedStatement.setString(6, String.valueOf("BASIC"));
 			preparedStatement.executeUpdate();
 			rs = preparedStatement.getGeneratedKeys();
 			if(rs.next()){
@@ -175,7 +179,7 @@ public class MembreDaoImpl implements MembreDao{
 			preparedStatement.setString(4, membre.getMembreMail());
 			preparedStatement.setString(5, membre.getMembreTelephone());
 			preparedStatement.setString(6, String.valueOf(membre.getMembreAbonnement()));
-			
+			preparedStatement.setInt(7, membre.getIdMembre());
 			preparedStatement.executeUpdate();
 			
 			System.out.println("UPDATE: " + membre);
