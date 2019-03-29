@@ -19,7 +19,7 @@ public class MembreDaoImpl implements MembreDao{
 	/*Implementation Singleton*/
 	private static MembreDaoImpl instance;
 	private MembreDaoImpl() { }
-	public static MembreDaoImpl getInstance() {
+	public static MembreDao getInstance() {
 		if(instance == null) {
 			instance = new MembreDaoImpl();
 		}

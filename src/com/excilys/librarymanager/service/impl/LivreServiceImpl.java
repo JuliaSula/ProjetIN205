@@ -25,7 +25,7 @@ public class LivreServiceImpl implements LivreService{
 		try {
 			livres = livreDao.getList();
 		} catch (DaoException e1) {
-			System.out.println(e1.getMessage());			
+			throw new ServiceException(e1.getMessage());			
 		}
 		return livres;
 	}
@@ -44,7 +44,7 @@ public class LivreServiceImpl implements LivreService{
 		try {
 			livre = livreDao.getById(id);
 		} catch (DaoException e1) {
-			System.out.println(e1.getMessage());			
+			throw new ServiceException(e1.getMessage());			
 		}
 		return livre;
 	}
@@ -59,7 +59,7 @@ public class LivreServiceImpl implements LivreService{
 		try {
 			i = livreDao.create(titre, auteur, isbn);
 		}  catch (DaoException e1) {
-			System.out.println(e1.getMessage());			
+			throw new ServiceException(e1.getMessage());			
 		}  catch (NullPointerException e) {
 			throw new ServiceException("Titre non informe" + e);
 		}
@@ -72,7 +72,7 @@ public class LivreServiceImpl implements LivreService{
 		try {
 			livreDao.update(livre);
 		} catch (DaoException e1) {
-			System.out.println(e1.getMessage());			
+			throw new ServiceException(e1.getMessage());			
 		} catch (NumberFormatException e2) {
 			throw new ServiceException("Erreur lors du parsing: id=" + e2);
 		}catch (NullPointerException e) {
@@ -86,7 +86,7 @@ public class LivreServiceImpl implements LivreService{
 		try {
 			livreDao.delete(id);
 		} catch (DaoException e1) {
-			System.out.println(e1.getMessage());			
+			throw new ServiceException(e1.getMessage());			
 		} catch (NumberFormatException e2) {
 			throw new ServiceException("Erreur lors du parsing: id=" + id, e2);
 		}
@@ -100,7 +100,7 @@ public class LivreServiceImpl implements LivreService{
 		try {
 		count=livreDao.count();
 		} catch (DaoException e1) {
-			System.out.println(e1.getMessage());			
+			throw new ServiceException(e1.getMessage());			
 		} 
 		return count;
 	}

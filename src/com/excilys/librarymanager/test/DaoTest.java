@@ -2,6 +2,9 @@ package com.excilys.librarymanager.test;
 
 import java.time.LocalDate;
 
+import com.excilys.librarymanager.dao.EmpruntDao;
+import com.excilys.librarymanager.dao.LivreDao;
+import com.excilys.librarymanager.dao.MembreDao;
 //import com.ex
 import com.excilys.librarymanager.dao.impl.EmpruntDaoImpl;
 
@@ -18,7 +21,7 @@ public class DaoTest {
 	public static void main(String[] args) throws DaoException {
 		
 		/*Test Livre*/
-		LivreDaoImpl l1= LivreDaoImpl.getInstance(); /*Initialise le instance de LivreDaoImpl*/
+		LivreDao l1= LivreDaoImpl.getInstance(); /*Initialise le instance de LivreDaoImpl*/
 		l1.count();									/*Teste Count*/
 		//l1.create(null, null, null);				/*Test creation*/
 		l1.getList();								/*Teste getList*/
@@ -35,7 +38,7 @@ public class DaoTest {
 		l1.getList();
 		
 	/*Test Membre Dao*/
-		MembreDaoImpl m1=MembreDaoImpl.getInstance();
+		MembreDao m1=MembreDaoImpl.getInstance();
 		m1.getList();
 		m1.count();
 		//m1.create(null, null, null, null, null);
@@ -52,7 +55,7 @@ public class DaoTest {
 //		m1.getList();
 //		
 		//m1.
-		EmpruntDaoImpl e1= EmpruntDaoImpl.getInstance();
+		EmpruntDao e1= EmpruntDaoImpl.getInstance();
 		e1.count();
 	//	e1.create(membre.getIdMembre(), livre.getIdLivre(), LocalDate.now());
 		e1.getList();

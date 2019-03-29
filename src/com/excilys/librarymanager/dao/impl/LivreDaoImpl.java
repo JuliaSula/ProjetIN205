@@ -18,7 +18,7 @@ public class LivreDaoImpl implements LivreDao{
 	/*Implementation Singleton*/
 	private static LivreDaoImpl instance;
 	private LivreDaoImpl() { }
-	public static LivreDaoImpl getInstance() {
+	public static LivreDao getInstance() {
 		if(instance == null) {
 			instance = new LivreDaoImpl();
 		}
