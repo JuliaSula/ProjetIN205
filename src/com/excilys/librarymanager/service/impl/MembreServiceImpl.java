@@ -57,6 +57,9 @@ public class MembreServiceImpl implements MembreService{
 			throws ServiceException {
 		MembreDao membreDao = MembreDaoImpl.getInstance();
 		int i = -1;
+		if (nom == null || prenom == null) {
+			throw new ServiceException("Le nom et le nom doivent être complétés");
+		}
 		try {
 			i = membreDao.create(nom, prenom, adresse, email, telephone);
 		}  catch (DaoException e1) {

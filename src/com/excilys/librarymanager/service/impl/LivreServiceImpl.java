@@ -53,11 +53,17 @@ public class LivreServiceImpl implements LivreService{
 	public int create(String titre, String auteur, String isbn) throws ServiceException {
 		LivreDao livreDao = LivreDaoImpl.getInstance();
 		int i = -1;
+		if (titre == null) {
+			System.out.println("hellloooooo");
+			throw new ServiceException("Titre non informe");
+		}
 		try {
 			i = livreDao.create(titre, auteur, isbn);
 		}  catch (DaoException e1) {
 			System.out.println(e1.getMessage());			
-		} 
+		}  catch (NullPointerException e) {
+			throw new ServiceException("Titre non informe" + e);
+		}
 		return i;
 	}
 
