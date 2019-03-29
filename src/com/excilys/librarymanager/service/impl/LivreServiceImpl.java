@@ -54,7 +54,6 @@ public class LivreServiceImpl implements LivreService{
 		LivreDao livreDao = LivreDaoImpl.getInstance();
 		int i = -1;
 		if (titre == null) {
-			System.out.println("hellloooooo");
 			throw new ServiceException("Titre non informe");
 		}
 		try {

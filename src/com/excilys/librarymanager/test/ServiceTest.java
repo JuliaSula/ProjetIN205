@@ -9,7 +9,7 @@ public class ServiceTest {
 
 	public static void main(String[] args) throws ServiceException {
 		LivreService l1 =  LivreServiceImpl.getInstance();
-		//l1.create("olala", "miguel jiji", "12-1234");
+//		l1.create("olala", "miguel jiji", "12-1234");
 //		l1.create(null, "prueba 3", "12-12121");
 		l1.getList();
 	}
