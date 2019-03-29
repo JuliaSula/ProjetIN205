@@ -35,7 +35,7 @@ public class MembreDaoImpl implements MembreDao{
 	
 	@Override
 	public List<Membre> getList() throws DaoException {
-		List<Membre> membres = new ArrayList<>();
+		List<Membre> membreList = new ArrayList<>();
 		ResultSet rs = null;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -47,12 +47,12 @@ public class MembreDaoImpl implements MembreDao{
 				Membre m = new Membre(rs.getString("nom"), 
 									  rs.getString("prenom"),
 									  rs.getString("adresse"),
-									  rs.getString("mail"),
+									  rs.getString("email"),
 									  rs.getString("telephone"),
 									  Abonnement.valueOf(rs.getString("abonnement")));
-				membres.add(m);
+				membreList.add(m);
 			}
-			System.out.println("GET: " + membres);
+			System.out.println("GET: " + membreList);
 		} catch (SQLException e) {
 			throw new DaoException("Probleme lors de la recuperation de la liste des membres", e);
 		} finally {
@@ -72,7 +72,7 @@ public class MembreDaoImpl implements MembreDao{
 				e.printStackTrace();
 			}
 		}
-		return membres;
+		return membreList;
 	}
 	
 	@Override
@@ -91,7 +91,7 @@ public class MembreDaoImpl implements MembreDao{
 				membre.setMembreNom(rs.getString("nom"));
 				membre.setMembrePrenom(rs.getString("prenom"));
 				membre.setMembreAdresse(rs.getString("adresse"));
-				membre.setMembreMail(rs.getString("mail"));
+				membre.setMembreMail(rs.getString("email"));
 				membre.setMembreTelephone(rs.getString("telephone"));
 				membre.setMembreAbonnement(Abonnement.valueOf(rs.getString("abonnement")));
 			}
@@ -139,7 +139,7 @@ public class MembreDaoImpl implements MembreDao{
 				id = rs.getInt(1);				
 			}
 
-			//System.out.println("CREATE: " + membre);
+			System.out.println("CREATE: " + nom);
 		} catch (SQLException e) {
 			throw new DaoException("Probleme lors de la creation du membre: " + e);
 		} finally {
@@ -206,6 +206,7 @@ public class MembreDaoImpl implements MembreDao{
 			preparedStatement.executeUpdate();
 			preparedStatement.close();
 			connection.close();
+			System.out.println("DELETE: " + id);
 		} catch (SQLException e) {
 			throw new DaoException("Probleme lors de la suppression du film: " + e);
 		}  finally {
@@ -236,7 +237,7 @@ public class MembreDaoImpl implements MembreDao{
 				count = rs.getInt(1);				
 			}
 			count=rs.getInt("count");
-			System.out.println("UPDATE: " + count);
+			System.out.println("COUNT: " + count);
 		}catch (SQLException e) {
 			throw new DaoException("Probleme lors compteur le membre: " , e);
 		}finally {

@@ -80,15 +80,17 @@ public class EmpruntDaoImpl implements EmpruntDao{
 	         Livre livre= new Livre(rs.getString("titre"),
 	        		 				rs.getString("auteur"), 
 	        		 				rs.getString("isbn"));
+	         livre.setIdLivre(rs.getInt("idLivre"));
 	         Membre m = new Membre(rs.getString("nom"), 
 					  rs.getString("prenom"),
 					  rs.getString("adresse"),
-					  rs.getString("mail"),
+					  rs.getString("email"),
 					  rs.getString("telephone"),
 					  Abonnement.valueOf(rs.getString("abonnement")));;
+			m.setIdMembre(rs.getInt("idMembre"));
 	         Emprunt emprunt=new Emprunt(m,livre, 
-	        		 					LocalDate.from((TemporalAccessor) rs.getDate("dateEmprunt")));
-	         
+	        		 					rs.getDate("dateEmprunt").toLocalDate());
+	         emprunt.setIdEmprunt(rs.getInt("id"));
 	         empruntList.add(emprunt);
 	         System.out.println("GET: " + emprunt);
 	         }
@@ -137,7 +139,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		         Membre m = new Membre(rs.getString("nom"), 
 						  rs.getString("prenom"),
 						  rs.getString("adresse"),
-						  rs.getString("mail"),
+						  rs.getString("email"),
 						  rs.getString("telephone"),
 						  Abonnement.valueOf(rs.getString("abonnement")));;
 		         Emprunt emprunt=new Emprunt(m,livre, 
@@ -177,6 +179,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		     try {
 		    	 connection = ConnectionManager.getConnection();
 		    	 preparedStatement = connection.prepareStatement(GET_CURRENT_EMPRUNTS_BY_MEMBRE_QUERY);
+		    	 preparedStatement.setInt(1, idMembre);
 		         rs = preparedStatement.executeQuery();
 		         
 		         while (rs.next()) {
@@ -188,7 +191,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		         Membre m = new Membre(rs.getString("nom"), 
 						  rs.getString("prenom"),
 						  rs.getString("adresse"),
-						  rs.getString("mail"),
+						  rs.getString("email"),
 						  rs.getString("telephone"),
 						  Abonnement.valueOf(rs.getString("abonnement")));;
 		         Emprunt emprunt=new Emprunt(m,livre, 
@@ -229,6 +232,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		     try {
 		    	 connection = ConnectionManager.getConnection();
 		    	 preparedStatement = connection.prepareStatement(GET_CURRENT_EMPRUNTS_BY_LIVRE_QUERY);
+		    	 preparedStatement.setInt(1, idLivre);
 		         rs = preparedStatement.executeQuery();
 		         
 		         while (rs.next()) {
@@ -237,15 +241,18 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		         Livre livre= new Livre(rs.getString("titre"),
 		        		 				rs.getString("auteur"), 
 		        		 				rs.getString("isbn"));
+		        livre.setIdLivre(rs.getInt("idLivre"));
 		         Membre m = new Membre(rs.getString("nom"), 
 						  rs.getString("prenom"),
 						  rs.getString("adresse"),
-						  rs.getString("mail"),
+						  rs.getString("email"),
 						  rs.getString("telephone"),
 						  Abonnement.valueOf(rs.getString("abonnement")));;
-		         Emprunt emprunt=new Emprunt(m,livre, 
-		        		 					LocalDate.from((TemporalAccessor) rs.getDate("dateEmprunt")));
+		         m.setIdMembre(rs.getInt("idMembre"));
 		         
+		         Emprunt emprunt=new Emprunt(m,livre, 
+		        		 					rs.getDate("dateEmprunt").toLocalDate());
+		         emprunt.setIdEmprunt(rs.getInt("id"));
 		         empruntList.add(emprunt);
 		         System.out.println("GET: " + emprunt);
 		         }
@@ -272,6 +279,8 @@ public class EmpruntDaoImpl implements EmpruntDao{
 				return empruntList;
 	}
 	public Emprunt getById(int id) throws DaoException{
+		Livre livre=new Livre();
+		Membre membre=new Membre();
 		Emprunt emprunt = new Emprunt();
 		ResultSet rs = null;
 		Connection connection = null;
@@ -282,16 +291,24 @@ public class EmpruntDaoImpl implements EmpruntDao{
 			preparedStatement.setInt(1, id);
 			rs = preparedStatement.executeQuery();
 			if(rs.next()) {
+				
+				membre.setMembrePrenom(rs.getString("prenom"));
+				membre.setMembreAdresse(rs.getString("adresse"));
+				membre.setMembreMail(rs.getString("email"));
+				membre.setMembreTelephone(rs.getString("telephone"));
+				membre.setMembreAbonnement(Abonnement.valueOf(rs.getString("abonnement")));
+				emprunt.setMembre(membre);
+				livre.setIdLivre(rs.getInt("id"));
+				livre.setTitre(rs.getString("titre"));
+				livre.setIsbn(rs.getString("isbn"));
+				livre.setAuteur(rs.getString("auteur"));
+				emprunt.setLivre(livre);
 				emprunt.setIdMembre(rs.getInt("idMembre"));
 				emprunt.setIdLivre(rs.getInt("idLivre"));
 				emprunt.setIdEmprunt(rs.getInt("idEmprunt"));
+		
 				
-				
-			//	membre.setMembrePrenom(rs.getString("prenom"));
-			//	membre.setMembreAdresse(rs.getString("adresse"));
-			//	membre.setMembreMail(rs.getString("mail"));
-			//	membre.setMembreTelephone(rs.getString("telephone"));
-			//	membre.setMembreAbonnement(Abonnement.valueOf(rs.getString("abonnement")));
+			
 			}
 			
 			System.out.println("GET: " + emprunt);

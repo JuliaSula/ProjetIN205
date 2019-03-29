@@ -25,20 +25,12 @@ public int getIdMembre()
 {
 	return this.membre.getIdMembre();
 }
-<<<<<<< HEAD
-=======
 
-//<<<<<<< HEAD
->>>>>>> 4cb1b42881babcbe164f1e2666659b873ebac66f
 public LocalDate getDateEmprunt()
 {
 return this.dateEmprunt;
 }
-<<<<<<< HEAD
-=======
 
-//=======
->>>>>>> 4cb1b42881babcbe164f1e2666659b873ebac66f
 /*SETTERS*/
 
 public void setIdEmprunt(int id)
@@ -49,15 +41,21 @@ public void setIdLivre(int idl)
 {
 	this.livre.setIdLivre(idl);
 }
+public void setMembre(Membre membre)
+{
+	this.membre=membre;
+	}
+
+public void setLivre(Livre livre)
+{
+	this.livre=livre;
+	}
 public void setIdMembre(int idm)
 {
 	this.membre.setIdMembre(idm);
 }
-<<<<<<< HEAD
-=======
-//>>>>>>> fdd415e7725be626bdb9685445cccf65e5cf0d8c
 
->>>>>>> 4cb1b42881babcbe164f1e2666659b873ebac66f
+
 public Emprunt()
 {}
 
