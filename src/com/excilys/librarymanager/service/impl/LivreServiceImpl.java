@@ -50,7 +50,6 @@ public class LivreServiceImpl implements LivreService{
 
 	@Override
 	public int create(String titre, String auteur, String isbn) throws ServiceException {
-		Livre livre = new Livre(titre, auteur, isbn);
 		LivreDao livreDao = LivreDaoImpl.getInstance();
 		int i = -1;
 		try {

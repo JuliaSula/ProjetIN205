@@ -8,7 +8,7 @@ import com.excilys.librarymanager.exception.DaoException;
 import com.excilys.librarymanager.modele.Emprunt;
 
 public interface EmpruntDao {
-	public List<Emprunt> getList() throws DaoException, SQLException;
+	public List<Emprunt> getList() throws DaoException;
 	public List<Emprunt> getListCurrent() throws DaoException;
 	public List<Emprunt> getListCurrentByMembre(int idMembre) throws DaoException;
 	public List<Emprunt> getListCurrentByLivre(int idLivre) throws DaoException;
