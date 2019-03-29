@@ -393,7 +393,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 			System.out.println("UPDATE: " + emprunt);
 		}
 	catch (SQLException e) {
-		throw new DaoException("Problème lors de la mise à jour du emprunt: " + emprunt, e);
+		throw new DaoException("Probleme lors de la mise a jour du emprunt: " + emprunt, e);
 	} finally {
 		
 		try {
@@ -425,7 +425,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 			System.out.println("COUNT: " + count);
 		}
 		catch (SQLException e) {
-			throw new DaoException("Problème lors compteur le emprunt: " , e);
+			throw new DaoException("Probleme lors compteur le emprunt: " , e);
 		}
 	 finally {
 		try {

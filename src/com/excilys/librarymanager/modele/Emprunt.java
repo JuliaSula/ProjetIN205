@@ -25,12 +25,10 @@ public int getIdMembre()
 {
 	return this.membre.getIdMembre();
 }
-
 public LocalDate getDateEmprunt()
 {
 return this.dateEmprunt;
 }
-
 /*SETTERS*/
 
 public void setIdEmprunt(int id)

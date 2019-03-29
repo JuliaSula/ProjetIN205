@@ -101,7 +101,7 @@ public class LivreDaoImpl implements LivreDao{
 	         }
 			System.out.println("GET: " + livre);
 			}catch (SQLException e) {
-	 			throw new DaoException("Problème lors de la récupération du livre: id=" + id, e);
+	 			throw new DaoException("Probleme lors de la recuperation du livre: id=" + id, e);
 		}finally {
 		
 			try{
@@ -143,11 +143,8 @@ public class LivreDaoImpl implements LivreDao{
 
 			System.out.println("CREATE: " + titre);
 			}catch (SQLException e) {
-			throw new DaoException("Problème lors de la création du livre: " , e);}
+			throw new DaoException("Probleme lors de la creation du livre: " , e);}
 			finally {
-				// Ici pour bien faire les choses on doit fermer les objets utilisés dans
-				// des blocs séparés afin que les exceptions levées n'empèchent pas la fermeture des autres !
-				// la logique est la même pour les autres méthodes. Pour rappel, le bloc finally sera toujours exécuté !
 				try {
 					res.close();
 				} catch (Exception e) {
@@ -184,7 +181,7 @@ public class LivreDaoImpl implements LivreDao{
 			System.out.println("UPDATE: " + livre);
 		}
 	catch (SQLException e) {
-		throw new DaoException("Problème lors de la mise à jour du livre: " + livre, e);
+		throw new DaoException("Probleme lors de la mise a jour du livre: " + livre, e);
 	} finally {
 		
 		try {
@@ -233,7 +230,6 @@ public class LivreDaoImpl implements LivreDao{
 	@Override
 	public int count() throws DaoException {
 		int count=0;
-
 		ResultSet rs=null;
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
