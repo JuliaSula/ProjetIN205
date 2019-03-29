@@ -3,15 +3,13 @@ package com.excilys.librarymanager.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.excilys.librarymanager.dao.LivreDao;
+
 import com.excilys.librarymanager.dao.MembreDao;
-import com.excilys.librarymanager.dao.impl.LivreDaoImpl;
 import com.excilys.librarymanager.dao.impl.MembreDaoImpl;
 import com.excilys.librarymanager.exception.DaoException;
 import com.excilys.librarymanager.exception.ServiceException;
-import com.excilys.librarymanager.modele.Livre;
 import com.excilys.librarymanager.modele.Membre;
-import com.excilys.librarymanager.service.LivreService;
+import com.excilys.librarymanager.service.EmpruntService;
 import com.excilys.librarymanager.service.MembreService;
 
 public class MembreServiceImpl implements MembreService{
@@ -36,8 +34,18 @@ public class MembreServiceImpl implements MembreService{
 
 	@Override
 	public List<Membre> getListMembreEmpruntPossible() throws ServiceException {
-		return null;
-		
+		EmpruntService empruntService = EmpruntServiceImpl.getInstance();//Appele l`intance de service
+		List<Membre> membreList = new ArrayList<>();
+		MembreDao membreDao = MembreDaoImpl.getInstance();
+		try {
+			for (int i = 0; i < membreDao.getList().size(); i++) {
+					if(empruntService.isEmpruntPossible(membreDao.getList().get(i)))
+						membreList.add(membreDao.getList().get(i));	
+			}
+			return membreList;
+		}catch (DaoException e1) {
+			throw new ServiceException(e1.getMessage());			
+		}
 	}
 
 	@Override
@@ -47,7 +55,7 @@ public class MembreServiceImpl implements MembreService{
 		try {
 			membre = membreDao.getById(id);
 		} catch (DaoException e1) {
-			System.out.println(e1.getMessage());			
+			throw new ServiceException(e1.getMessage());			
 		}
 		return membre;
 	}
@@ -58,32 +66,55 @@ public class MembreServiceImpl implements MembreService{
 		MembreDao membreDao = MembreDaoImpl.getInstance();
 		int i = -1;
 		if (nom == null || prenom == null) {
-			throw new ServiceException("Le nom et le nom doivent être complétés");
+			throw new ServiceException("Le nom et le nom doivent etre completes");
 		}
 		try {
 			i = membreDao.create(nom, prenom, adresse, email, telephone);
 		}  catch (DaoException e1) {
-			System.out.println(e1.getMessage());			
+			throw new ServiceException(e1.getMessage());			
 		} 
 		return i;
 	}
 
 	@Override
 	public void update(Membre membre) throws ServiceException {
-		// TODO Auto-generated method stub
+		MembreDao membreDao = MembreDaoImpl.getInstance();
+		if (membre.getMembreNom() == null || membre.getMembrePrenom() == null) {
+			throw new ServiceException("Le nom et le nom doivent etre completes");
+		}
+		try {
+			membreDao.update(membre);
+		} catch (DaoException e1) {
+			throw new ServiceException(e1.getMessage());			
+		} catch (NumberFormatException e2) {
+			throw new ServiceException("Erreur lors du parsing: id=" + e2);
+		}
 		
 	}
 
 	@Override
 	public void delete(int id) throws ServiceException {
-		// TODO Auto-generated method stub
+		MembreDao membreDao = MembreDaoImpl.getInstance();
+		try {
+			membreDao.delete(id);
+		} catch (DaoException e1) {
+			throw new ServiceException(e1.getMessage());			
+		} catch (NumberFormatException e2) {
+			throw new ServiceException("Erreur lors du parsing: id=" + id, e2);
+		}
 		
 	}
 
 	@Override
 	public int count() throws ServiceException {
-		// TODO Auto-generated method stub
-		return 0;
+			MembreDao membreDao = MembreDaoImpl.getInstance();
+			int count=-1;
+			try {
+			count=membreDao.count();
+			} catch (DaoException e1) {
+				throw new ServiceException(e1.getMessage(), e1);	
+			} 
+			return count;
 	}
 
 }

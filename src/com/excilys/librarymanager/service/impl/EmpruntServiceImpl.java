@@ -2,21 +2,25 @@ package com.excilys.librarymanager.service.impl;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.excilys.librarymanager.dao.EmpruntDao;
-import com.excilys.librarymanager.dao.LivreDao;
 import com.excilys.librarymanager.dao.impl.EmpruntDaoImpl;
-import com.excilys.librarymanager.dao.impl.LivreDaoImpl;
 import com.excilys.librarymanager.exception.DaoException;
 import com.excilys.librarymanager.exception.ServiceException;
 import com.excilys.librarymanager.modele.Emprunt;
 import com.excilys.librarymanager.modele.Membre;
 import com.excilys.librarymanager.service.EmpruntService;
 
+
 public class EmpruntServiceImpl implements EmpruntService{
 
+	private static EmpruntServiceImpl instance = new EmpruntServiceImpl();
+	private EmpruntServiceImpl() { }	
+	public static EmpruntService getInstance() {		
+		return instance;
+	}
+	
 	@Override
 	public List<Emprunt> getList() throws ServiceException {
 		EmpruntDao empruntDao = EmpruntDaoImpl.getInstance();
