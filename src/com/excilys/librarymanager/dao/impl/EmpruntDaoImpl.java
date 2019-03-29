@@ -1,6 +1,5 @@
 package com.excilys.librarymanager.dao.impl;
 import java.time.LocalDate;
-import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,18 +79,22 @@ public class EmpruntDaoImpl implements EmpruntDao{
 	         Livre livre= new Livre(rs.getString("titre"),
 	        		 				rs.getString("auteur"), 
 	        		 				rs.getString("isbn"));
+	         livre.setIdLivre(rs.getInt("idLivre"));
 	         Membre m = new Membre(rs.getString("nom"), 
 					  rs.getString("prenom"),
 					  rs.getString("adresse"),
-					  rs.getString("mail"),
+					  rs.getString("email"),
 					  rs.getString("telephone"),
 					  Abonnement.valueOf(rs.getString("abonnement")));;
+			m.setIdMembre(rs.getInt("idMembre"));
 	         Emprunt emprunt=new Emprunt(m,livre, 
-	        		 					LocalDate.from((TemporalAccessor) rs.getDate("dateEmprunt")));
-	         
+	        		 					rs.getDate("dateEmprunt").toLocalDate());
+	         emprunt.setIdEmprunt(rs.getInt("id"));
+	         if(rs.getDate("dateRetour")!=null)
+	        	 emprunt.setDateRetour(rs.getDate("dateRetour").toLocalDate());
 	         empruntList.add(emprunt);
-	         System.out.println("GET: " + emprunt);
 	         }
+	         System.out.println("GET: " + empruntList);
 	     } catch (SQLException e) {
 				throw new DaoException("Probleme lors de la recuperation de la liste des membres", e);
 			} finally {
@@ -134,18 +137,23 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		         Livre livre= new Livre(rs.getString("titre"),
 		        		 				rs.getString("auteur"), 
 		        		 				rs.getString("isbn"));
+		         livre.setIdLivre(rs.getInt("idLivre"));
 		         Membre m = new Membre(rs.getString("nom"), 
 						  rs.getString("prenom"),
 						  rs.getString("adresse"),
-						  rs.getString("mail"),
+						  rs.getString("email"),
 						  rs.getString("telephone"),
-						  Abonnement.valueOf(rs.getString("abonnement")));;
+						  Abonnement.valueOf(rs.getString("abonnement")));
+		         m.setIdMembre(rs.getInt("idMembre"));
 		         Emprunt emprunt=new Emprunt(m,livre, 
-		        		 					LocalDate.from((TemporalAccessor) rs.getDate("dateEmprunt")));
-		         
+		        		 					rs.getDate("dateEmprunt").toLocalDate());
+		         //if(rs.getDate("dateRetour")!=null)
+		        	// emprunt.setDateRetour(rs.getDate("dateRetour").toLocalDate());
+		         emprunt.setIdEmprunt(rs.getInt("id"));
 		         empruntList.add(emprunt);
-		         System.out.println("GET: " + emprunt);
+		         
 		         }
+		         System.out.println("GET CURRENT LIST : " + empruntList);
 		     } catch (SQLException e) {
 					throw new DaoException("Probleme lors de la recuperation de la liste des membres", e);
 				} finally {
@@ -177,6 +185,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		     try {
 		    	 connection = ConnectionManager.getConnection();
 		    	 preparedStatement = connection.prepareStatement(GET_CURRENT_EMPRUNTS_BY_MEMBRE_QUERY);
+		    	 preparedStatement.setInt(1, idMembre);
 		         rs = preparedStatement.executeQuery();
 		         
 		         while (rs.next()) {
@@ -185,18 +194,22 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		         Livre livre= new Livre(rs.getString("titre"),
 		        		 				rs.getString("auteur"), 
 		        		 				rs.getString("isbn"));
+		         livre.setIdLivre(rs.getInt("idLivre"));
 		         Membre m = new Membre(rs.getString("nom"), 
 						  rs.getString("prenom"),
 						  rs.getString("adresse"),
-						  rs.getString("mail"),
+						  rs.getString("email"),
 						  rs.getString("telephone"),
-						  Abonnement.valueOf(rs.getString("abonnement")));;
+						  Abonnement.valueOf(rs.getString("abonnement")));
+		         m.setIdMembre(rs.getInt("idMembre"));
 		         Emprunt emprunt=new Emprunt(m,livre, 
-		        		 					LocalDate.from((TemporalAccessor) rs.getDate("dateEmprunt")));
-		         
+		        		 					rs.getDate("dateEmprunt").toLocalDate());
+		         emprunt.setIdEmprunt(rs.getInt("id"));
+		        // if(rs.getDate("dateRetour")!=null)
+		        	// emprunt.setDateRetour(rs.getDate("dateRetour").toLocalDate());
 		         empruntList.add(emprunt);
-		         System.out.println("GET: " + emprunt);
 		         }
+		         System.out.println("GET CURRENT LIST BY MEMBRE: " + empruntList);
 		     } catch (SQLException e) {
 					throw new DaoException("Probleme lors de la recuperation de la liste des membres", e);
 				} finally {
@@ -229,6 +242,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		     try {
 		    	 connection = ConnectionManager.getConnection();
 		    	 preparedStatement = connection.prepareStatement(GET_CURRENT_EMPRUNTS_BY_LIVRE_QUERY);
+		    	 preparedStatement.setInt(1, idLivre);
 		         rs = preparedStatement.executeQuery();
 		         
 		         while (rs.next()) {
@@ -237,17 +251,23 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		         Livre livre= new Livre(rs.getString("titre"),
 		        		 				rs.getString("auteur"), 
 		        		 				rs.getString("isbn"));
+		        livre.setIdLivre(rs.getInt("idLivre"));
 		         Membre m = new Membre(rs.getString("nom"), 
 						  rs.getString("prenom"),
 						  rs.getString("adresse"),
-						  rs.getString("mail"),
+						  rs.getString("email"),
 						  rs.getString("telephone"),
 						  Abonnement.valueOf(rs.getString("abonnement")));;
-		         Emprunt emprunt=new Emprunt(m,livre, 
-		        		 					LocalDate.from((TemporalAccessor) rs.getDate("dateEmprunt")));
+						  
+		         m.setIdMembre(rs.getInt("idMembre"));
 		         
+		         Emprunt emprunt=new Emprunt(m,livre, 
+		        		 					rs.getDate("dateEmprunt").toLocalDate());
+		         //if(rs.getDate("dateRetour")!=null)
+		        	// emprunt.setDateRetour(rs.getDate("dateRetour").toLocalDate());
+		         emprunt.setIdEmprunt(rs.getInt("id"));
 		         empruntList.add(emprunt);
-		         System.out.println("GET: " + emprunt);
+		         System.out.println("GET CURRENT LIST BY LIVRE: " + emprunt);
 		         }
 		     } catch (SQLException e) {
 					throw new DaoException("Probleme lors de la recuperation de la liste des membres", e);
@@ -272,6 +292,8 @@ public class EmpruntDaoImpl implements EmpruntDao{
 				return empruntList;
 	}
 	public Emprunt getById(int id) throws DaoException{
+		Livre livre=new Livre();
+		Membre membre=new Membre();
 		Emprunt emprunt = new Emprunt();
 		ResultSet rs = null;
 		Connection connection = null;
@@ -282,16 +304,26 @@ public class EmpruntDaoImpl implements EmpruntDao{
 			preparedStatement.setInt(1, id);
 			rs = preparedStatement.executeQuery();
 			if(rs.next()) {
+				
+				membre.setMembrePrenom(rs.getString("prenom"));
+				membre.setMembreAdresse(rs.getString("adresse"));
+				membre.setMembreMail(rs.getString("email"));
+				membre.setMembreTelephone(rs.getString("telephone"));
+				membre.setMembreAbonnement(Abonnement.valueOf(rs.getString("abonnement")));
+				emprunt.setMembre(membre);
+				livre.setIdLivre(rs.getInt("id"));
+				livre.setTitre(rs.getString("titre"));
+				livre.setIsbn(rs.getString("isbn"));
+				livre.setAuteur(rs.getString("auteur"));
+				emprunt.setLivre(livre);
 				emprunt.setIdMembre(rs.getInt("idMembre"));
 				emprunt.setIdLivre(rs.getInt("idLivre"));
 				emprunt.setIdEmprunt(rs.getInt("idEmprunt"));
+				emprunt.setDateEmprunt(rs.getDate("dateEmprunt").toLocalDate());
+				if(rs.getDate("dateRetour")!=null)
+					 emprunt.setDateRetour(rs.getDate("dateRetour").toLocalDate());
 				
-				
-			//	membre.setMembrePrenom(rs.getString("prenom"));
-			//	membre.setMembreAdresse(rs.getString("adresse"));
-			//	membre.setMembreMail(rs.getString("mail"));
-			//	membre.setMembreTelephone(rs.getString("telephone"));
-			//	membre.setMembreAbonnement(Abonnement.valueOf(rs.getString("abonnement")));
+			
 			}
 			
 			System.out.println("GET: " + emprunt);
@@ -331,7 +363,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 			preparedStatement.setInt(1, idMembre);
 			preparedStatement.setInt(2, idLivre);
 			preparedStatement.setDate(3, (Date.valueOf(dateEmprunt)));
-			
+			preparedStatement.setDate(4, (null));
 			preparedStatement.executeUpdate();
 			rs = preparedStatement.getGeneratedKeys();
 			if(rs.next()){
@@ -370,7 +402,9 @@ public class EmpruntDaoImpl implements EmpruntDao{
 			preparedStatement = connection.prepareStatement(UPDATE_QUERY);
 			preparedStatement.setInt(1, emprunt.getIdMembre());
 			preparedStatement.setInt(2, emprunt.getIdLivre());
-			preparedStatement.setDate(3, Date.valueOf(emprunt.getDateEmprunt()));
+			preparedStatement.setDate(3, (Date.valueOf(emprunt.getDateEmprunt())));
+			preparedStatement.setDate(4, (Date.valueOf(emprunt.getDateRetour())));
+			preparedStatement.setInt(5, emprunt.getIdEmprunt());
 			preparedStatement.executeUpdate();
 			
 			System.out.println("UPDATE: " + emprunt);

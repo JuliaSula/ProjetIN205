@@ -51,8 +51,10 @@ public class LivreDaoImpl implements LivreDao{
 	         Livre livre= new Livre(rs.getString("titre"),
 	        		 				rs.getString("auteur"),
 	        		 				rs.getString("isbn"));
+	         livre.setIdLivre(rs.getInt("id"));
 	         livreList.add(livre);
 	         }
+	         System.out.println("GET: " + livreList);
 		} 
 		catch (SQLException e) {
 			throw new DaoException("Problème lors de la récupération de la liste des livres", e);
@@ -97,7 +99,7 @@ public class LivreDaoImpl implements LivreDao{
 				livre.setIsbn(rs.getString("isbn"));
 				livre.setAuteur(rs.getString("auteur"));
 	         }
-			
+			System.out.println("GET: " + livre);
 			}catch (SQLException e) {
 	 			throw new DaoException("Problème lors de la récupération du livre: id=" + id, e);
 		}finally {
@@ -139,7 +141,7 @@ public class LivreDaoImpl implements LivreDao{
 				id = res.getInt(1);				
 			}
 
-			System.out.println("CREATE: " + id);
+			System.out.println("CREATE: " + titre);
 			}catch (SQLException e) {
 			throw new DaoException("Problème lors de la création du livre: " , e);}
 			finally {
@@ -177,6 +179,7 @@ public class LivreDaoImpl implements LivreDao{
 			preparedStatement.setString(1, livre.getTitre());
 			preparedStatement.setString(2, livre.getAuteur());
 			preparedStatement.setString(3, livre.getIsbn());
+			preparedStatement.setInt(4, livre.getIdLivre());
 			preparedStatement.executeUpdate();
 			
 			System.out.println("UPDATE: " + livre);
@@ -230,24 +233,8 @@ public class LivreDaoImpl implements LivreDao{
 
 	@Override
 	public int count() throws DaoException {
-<<<<<<< HEAD
 		int count=0;
-=======
-//<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-
-		int count=0;
-<<<<<<< HEAD
-//>>>>>>> fdd415e7725be626bdb9685445cccf65e5cf0d8c
-=======
-=======
->>>>>>> 6c029172036b1a4443eb31b6e038931332a62950
-		int count;
->>>>>>> fdd415e7725be626bdb9685445cccf65e5cf0d8c
->>>>>>> 5b30723da2ae8dcdb411b8b71400a87029132a77
->>>>>>> 4cb1b42881babcbe164f1e2666659b873ebac66f
 		ResultSet rs=null;
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
@@ -258,17 +245,11 @@ public class LivreDaoImpl implements LivreDao{
 			if(rs.next()){
 				count=rs.getInt("count");
 			}
-			System.out.println("UPDATE: " + count);
-<<<<<<< HEAD
+			System.out.println("COUNT: " + count);
+
 		}
 		catch (SQLException e) {
 			throw new DaoException("Problème lors compteur le livre: " , e);
-=======
-//<<<<<<< HEAD
-		}
-		catch (SQLException e) {
-			throw new DaoException("Problème lors compteur le film: " , e);
->>>>>>> 4cb1b42881babcbe164f1e2666659b873ebac66f
 		}finally {
 			try {
 				rs.close();
@@ -285,11 +266,6 @@ public class LivreDaoImpl implements LivreDao{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-<<<<<<< HEAD
-=======
-			
-//>>>>>>> fdd415e7725be626bdb9685445cccf65e5cf0d8c
->>>>>>> 4cb1b42881babcbe164f1e2666659b873ebac66f
 		}
 		return count;
 	}
