@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-<<<<<<< HEAD
-	<name>Servers</name>
-=======
 	<name>LibraryManager</name>
->>>>>>> b31bceb6b76dde4aa17132e40570a201673a538e
 	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
-<<<<<<< HEAD
-	</buildSpec>
-	<natures>
-=======
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
 			<arguments>
@@ -41,6 +33,5 @@
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
->>>>>>> b31bceb6b76dde4aa17132e40570a201673a538e
 	</natures>
 </projectDescription>

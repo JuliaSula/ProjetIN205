@@ -38,9 +38,11 @@ public class LivreServiceImpl implements LivreService{
 		LivreDao livreDao = LivreDaoImpl.getInstance();
 		try {
 			for (int i = 0; i < livreDao.getList().size(); i++) {
-				if(empruntService.isLivreDispo(livreDao.getList().get(i).getIdLivre()))
-					livreList.add(livreDao.getList().get(i));	
-		}return livreList;
+				{		if(empruntService.isLivreDispo(livreDao.getList().get(i).getIdLivre()))
+				{	livreList.add(livreDao.getList().get(i));}	
+				}
+				}
+			return livreList;
 		}catch (DaoException e1) {
 			throw new ServiceException(e1.getMessage());			
 		}
@@ -78,6 +80,9 @@ public class LivreServiceImpl implements LivreService{
 	@Override
 	public void update(Livre livre) throws ServiceException {
 		LivreDao livreDao = LivreDaoImpl.getInstance();
+		if (livre.getTitre() == null) {
+			throw new ServiceException("Titre non informe");
+		}
 		try {
 			livreDao.update(livre);
 		} catch (DaoException e1) {

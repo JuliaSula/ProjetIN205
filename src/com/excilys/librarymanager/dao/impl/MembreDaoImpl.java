@@ -55,7 +55,7 @@ public class MembreDaoImpl implements MembreDao{
 				membreList.add(membre);
 
 			}
-			System.out.println("GET: " + membreList);
+			//System.out.println("GET: " + membreList);
 		} catch (SQLException e) {
 			throw new DaoException("Probleme lors de la recuperation de la liste des membres", e);
 		} finally {

@@ -9,4 +9,36 @@ id="WebApp_ID" version="3.1">
     <error-code>500</error-code>
     <location>/WEB-INF/View/error_500.jsp</location>
   </error-page>
+  
+    <servlet>
+	<servlet-name>DashboardServlet</servlet-name>
+	<servlet-class>com.excilys.librarymanager.servlet.DashboardServlet</servlet-class>
+  </servlet>
+<servlet-mapping>
+<servlet-name>DashboardServlet</servlet-name>
+<url-pattern>/dashboard</url-pattern>
+</servlet-mapping>
+  
+  
+  <servlet>
+<servlet-name>EmpruntAddServlet</servlet-name>
+<servlet-class>com.excilys.librarymanager.servlet.EmpruntAddServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>EmpruntAddServlet</servlet-name>
+<url-pattern>/emprunt_add</url-pattern>
+</servlet-mapping>
+  
+  <servlet>
+<servlet-name>EmpruntListServlet</servlet-name>
+<servlet-class>com.excilys.librarymanager.servlet.EmpruntListServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>EmpruntListServlet</servlet-name>
+<url-pattern>/emprunt_list</url-pattern>
+</servlet-mapping>
+  
+  
 </web-app>
+
+

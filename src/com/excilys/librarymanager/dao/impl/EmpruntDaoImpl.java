@@ -96,7 +96,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 
 	         empruntList.add(emprunt);
 	         }
-	         System.out.println("GET: " + empruntList);
+	        // System.out.println("GET: " + empruntList);
 	     } catch (SQLException e) {
 				throw new DaoException("Probleme lors de la recuperation de la liste des membres", e);
 			} finally {
@@ -211,7 +211,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		        	// emprunt.setDateRetour(rs.getDate("dateRetour").toLocalDate());
 		         empruntList.add(emprunt);
 		         }
-		         System.out.println("GET CURRENT LIST BY MEMBRE: " + empruntList);
+		         //System.out.println("GET CURRENT LIST BY MEMBRE: " + empruntList);
 		     } catch (SQLException e) {
 					throw new DaoException("Probleme lors de la recuperation de la liste des membres", e);
 				} finally {
@@ -331,7 +331,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 			
 			}
 			
-			System.out.println("GET: " + emprunt);
+			//System.out.println("GET: " + emprunt);
 		} catch (SQLException e) {
 			throw new DaoException("Probleme lors de la recuperation du emprunt: id=" + id, e);
 		} finally {

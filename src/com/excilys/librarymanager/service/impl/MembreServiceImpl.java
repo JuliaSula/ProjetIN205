@@ -69,7 +69,7 @@ public class MembreServiceImpl implements MembreService{
 			throw new ServiceException("Le nom et le nom doivent etre completes");
 		}
 		try {
-			i = membreDao.create(nom, prenom, adresse, email, telephone);
+			i = membreDao.create(nom.toUpperCase(), prenom, adresse, email, telephone);
 		}  catch (DaoException e1) {
 			throw new ServiceException(e1.getMessage());			
 		} 
