@@ -142,9 +142,9 @@ public class EmpruntServiceImpl implements EmpruntService{
 		int i=-1;
 		try {
 			switch(membre.getMembreAbonnement()) {
-				case BASIC: i=2;break;
-				case PREMIUM:i=5;break;
-				case VIP:i=10;break;
+				case BASIC: i=1;break;
+				case PREMIUM:i=2;break;
+				case VIP:i=3;break;
 		}
 			
 			return empruntDao.getListCurrentByMembre(membre.getIdMembre()).size()<i;

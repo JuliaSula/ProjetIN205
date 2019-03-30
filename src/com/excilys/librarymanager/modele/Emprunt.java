@@ -25,6 +25,14 @@ public int getIdMembre()
 {
 	return this.membre.getIdMembre();
 }
+public Livre getLivre()
+{
+	return this.livre;
+}
+public Membre getMembre()
+{
+	return this.membre;
+}
 
 public LocalDate getDateEmprunt()
 {

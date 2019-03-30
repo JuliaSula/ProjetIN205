@@ -41,7 +41,21 @@
                             <a href="emprunt_return?id=idDeLEmprunt"><ion-icon class="table-item" name="log-in"></a>
                         </td>
                     </tr>
-
+					<c:forEach items="${emprunts}" var = "emprunt">
+				        <tr>
+				            <td>${emprunt.getLivre().getTitre()},<em>${emprunt.getLivre().getAuteur()}</em></td>
+				            <td>${emprunt.getMembre().getMembreNom()} ${emprunt.getMembre().getMembrePrenom()}</td>
+				            <td>${emprunt.getDateEmprunt()}</td>
+				            <td>	            
+				           <c:if test="${emprunt.getDateRetour()!=null}">
+				           		${emprunt.getDateRetour()}
+				           </c:if>
+				           <c:if test="${emprunt.getDateRetour()==null}">
+                            	<a href="emprunt_return?id=${emprunt.getIdEmprunt()}"><ion-icon class="table-item" name="log-in"></a>
+                       		 </c:if>
+                       		</td>
+				        </tr>
+			    	</c:forEach>
 					 <!-- TODO : parcourir la liste des emprunts en cours et les afficher selon la structure d'exemple ci-dessus -->
 					 <!-- TODO : dans le champ "retour", afficher la date de retour si elle existe, et un lien vers la page de retour si la date est vide (comme dans l'exemple ci-dessus) -->
                 </tbody>
