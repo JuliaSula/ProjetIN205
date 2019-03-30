@@ -21,16 +21,26 @@
       </div>
       <div class="row">
       <div class="container">
-      <h5>Suppression du livre n°42</h5> <!-- TODO : afficher l'id du livre au lieu de 42 -->
+      <h5>Suppression du livre n° ${livre.getIdLivre()}</h5> <!-- TODO : afficher l'id du livre au lieu de 42 -->
         <div class="row">
-          <p>Êtes-vous sûr de vouloir supprimer le livre TitreDuLivre de NomDeLAuteur (code isbnDuLivre) ?</p> <!-- TODO : compléter les trois informations ci-contre -->
-	      <form action="/LibraryManager/livre_delete" method="post" class="col s12">
-            <input type="hidden" value="idDuLivre" name="id"> <!-- TODO : remplacer idDuLivre par l'id du livre -->
+          <p>Êtes-vous sûr de vouloir supprimer le livre ${livre.getTitre()} de ${livre.getAuteur()} (code  ${livre.getIdLivre()}) ?</p> <!-- TODO : compléter les trois informations ci-contre -->
+	      <form action="livre_delete" method="post" class="col s12">
+            <input type="hidden" value="${livre.getIdLivre()}" name="id"> <!-- TODO : remplacer idDuLivre par l'id du livre -->
 	        <div class="row center">
-	          <button class="btn waves-effect waves-light red" type="submit">Supprimer
-	            <i class="material-icons right">delete</i>
-	          </button>
-	          <a class="btn waves-effect waves-light orange" href="/LibraryManager/livre_details?id=idDuLivre">Annuler</a> <!-- TODO : remplacer idDuLivre par l'id du livre -->
+	       	<c:choose>
+				<c:when test="${isLivreDispo}">
+	          		<button class="btn waves-effect waves-light red" type="submit">Supprimer
+	            		<i class="material-icons right">delete</i>
+	          		</button>
+	          		</c:when>    
+				    	<c:otherwise>
+				    	<!-- Si le Livre ce n'est pas disponible vous pouvez pas l'effacer! -->
+						 <button  disabled class="btn waves-effect waves-light red" type="submit">Supprimer
+			             	<i class="material-icons right">delete</i>
+			             </button>
+	        	</c:otherwise>
+			</c:choose>
+	        <a class="btn waves-effect waves-light orange" href="livre_details?id=${livre.getIdLivre()}">Annuler</a> <!-- TODO : remplacer idDuLivre par l'id du livre -->
 	        </div>
 	      </form>
 	    </div>	    

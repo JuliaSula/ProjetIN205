@@ -21,22 +21,22 @@
       </div>
       <div class="row">
       <div class="container">
-      <h5>Détails du livre n°${livre.id}</h5>
+      <h5>Détails du livre n°${livre.getIdLivre()}</h5>
         <div class="row">
-	      <form action="/LibraryManager/livre_details?id=idDuLivre" method="post" class="col s12"> <!-- TODO : remplacer idDuLivre par l'id du livre -->
+	      <form action="livre_details?id=${livre.getIdLivre()}" method="post" class="col s12"> <!-- TODO : remplacer idDuLivre par l'id du livre -->
 	        <div class="row">
 	          <div class="input-field col s12">
-	            <input id="titre" type="text" value="titreDuLivre" name="titre"> <!-- TODO : remplacer titreDuLivre par le titre du livre -->
+	            <input id="titre" type="text" value="${livre.getTitre()}" name="titre"> <!-- TODO : remplacer titreDuLivre par le titre du livre -->
 	            <label for="titre">Titre</label>
 	          </div>
-	        </div>
+	        </div>        
 	        <div class="row">
 	          <div class="input-field col s6">
-	            <input id="auteur" type="text" value="auteurDuLivre" name="auteur"> <!-- TODO : remplacer auteurDuLivre par l'auteur du livre -->
+	            <input id="auteur" type="text" value="${livre.getAuteur()}" name="auteur"> <!-- TODO : remplacer auteurDuLivre par l'auteur du livre -->
 	            <label for="auteur">Auteur</label>
 	          </div>
 	          <div class="input-field col s6">
-	            <input id="isbn" type="text" value="isbnDuLivre" name="isbn"> <!-- TODO : remplacer isbnDuLivre par l'isbn du livre -->
+	            <input id="isbn" type="text" value="${livre.getIsbn()}" name="isbn"> <!-- TODO : remplacer isbnDuLivre par l'isbn du livre -->
 	            <label for="isbn">ISBN 13</label>
 	          </div>
 	        </div>
@@ -44,10 +44,9 @@
 	          <button class="btn waves-effect waves-light" type="submit">Enregistrer</button>
 	          <button class="btn waves-effect waves-light orange" type="reset">Annuler</button>
 	        </div>
-	      </form>
-	      
-	      <form action="/LibraryManager/livre_delete" method="get" class="col s12">
-	        <input type="hidden" value="idDuLivre" name="id"> <!-- TODO : remplacer idDuLivre par l'id du livre -->
+	      </form>      
+	      <form action="livre_delete" method="get" class="col s12">
+	        <input type="hidden" value="${livre.getIdLivre()}" name="id"> <!-- TODO : remplacer idDuLivre par l'id du livre -->
 	        <div class="row center">
 	          <button class="btn waves-effect waves-light red" type="submit">Supprimer le livre
 	            <i class="material-icons right">delete</i>
@@ -74,6 +73,23 @@
                     <a href="emprunt_return?id=idDeLEmprunt"><ion-icon class="table-item" name="log-in"></a>
                   </td>
                 </tr>
+                
+                 <c:forEach items="${empruntsById}" var = "emprunt">
+				        <tr>
+				            <td> ${emprunt.getMembre().getPrenom()} ${emprunt.getMembre().getNom()} </td>
+				            <td>${emprunt.getDateEmprunt()}</td>
+				            <c:choose>
+							    <c:when test="${emprunt.getDateRetour() != null}">
+									<td>${emprunt.getDateRetour()}</td>
+							    </c:when>    
+							    <c:otherwise>
+									<td>
+                            			<a href="emprunt_return?id=${emprunt.getId()}"><ion-icon class="table-item" name="log-in"></a>
+                       				</td>
+							    </c:otherwise>
+							</c:choose>
+				        </tr>
+			     </c:forEach>
 
 				<!-- TODO : parcourir la liste des emprunts en cours pour ce livre et les afficher selon la structure d'exemple ci-dessus -->
               </tbody>

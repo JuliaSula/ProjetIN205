@@ -10,7 +10,7 @@ id="WebApp_ID" version="3.1">
     <location>/WEB-INF/View/error_500.jsp</location>
   </error-page>
   
-    <servlet>
+ <servlet>
 	<servlet-name>DashboardServlet</servlet-name>
 	<servlet-class>com.excilys.librarymanager.servlet.DashboardServlet</servlet-class>
   </servlet>
@@ -18,9 +18,9 @@ id="WebApp_ID" version="3.1">
 <servlet-name>DashboardServlet</servlet-name>
 <url-pattern>/dashboard</url-pattern>
 </servlet-mapping>
-  
-  
-  <servlet>
+
+
+<servlet>
 <servlet-name>EmpruntAddServlet</servlet-name>
 <servlet-class>com.excilys.librarymanager.servlet.EmpruntAddServlet</servlet-class>
 </servlet>
@@ -28,8 +28,10 @@ id="WebApp_ID" version="3.1">
 <servlet-name>EmpruntAddServlet</servlet-name>
 <url-pattern>/emprunt_add</url-pattern>
 </servlet-mapping>
-  
-  <servlet>
+
+
+
+<servlet>
 <servlet-name>EmpruntListServlet</servlet-name>
 <servlet-class>com.excilys.librarymanager.servlet.EmpruntListServlet</servlet-class>
 </servlet>
@@ -37,6 +39,7 @@ id="WebApp_ID" version="3.1">
 <servlet-name>EmpruntListServlet</servlet-name>
 <url-pattern>/emprunt_list</url-pattern>
 </servlet-mapping>
+<<<<<<< HEAD
 
   <servlet>
 <servlet-name>MembreListServlet</servlet-name>
@@ -67,5 +70,54 @@ id="WebApp_ID" version="3.1">
   
   
 </web-app>
+=======
+>>>>>>> 5f419a287db91836161d3ec7c3e1bbb37fefcba6
 
 
+<servlet>
+<servlet-name>EmpruntReturnServlet</servlet-name>
+<servlet-class>com.excilys.librarymanager.servlet.EmpruntReturnServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>EmpruntReturnServlet</servlet-name>
+<url-pattern>/emprunt_return</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>LivreAddServlet</servlet-name>
+<servlet-class>com.excilys.librarymanager.servlet.LivreAddServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>LivreAddServlet</servlet-name>
+<url-pattern>/livre_add</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>LivreDetailsServlet</servlet-name>
+<servlet-class>com.excilys.librarymanager.servlet.LivreDetailsServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>LivreDetailsServlet</servlet-name>
+<url-pattern>/livre_details</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>LivreDeleteServlet</servlet-name>
+<servlet-class>com.excilys.librarymanager.servlet.LivreDeleteServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>LivreDeleteServlet</servlet-name>
+<url-pattern>/livre_delete</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>LivreListServlet</servlet-name>
+<servlet-class>com.excilys.librarymanager.servlet.LivreListServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>LivreListServlet</servlet-name>
+<url-pattern>/livre_list</url-pattern>
+</servlet-mapping>
+
+</web-app>
+ 

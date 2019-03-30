@@ -1,7 +1,7 @@
 package com.excilys.librarymanager.modele;
 
 public class Livre {
-	private int idLivre;
+	private int id;
 	private String titre;
 	private String auteur;
 	private String isbn;
@@ -19,7 +19,7 @@ public class Livre {
 	}
 	public int getIdLivre()
 	{
-		return this.idLivre;
+		return this.id;
 	}
 	
 	public void setTitre(String titre)
@@ -36,12 +36,12 @@ public class Livre {
 	}
 	public void setIdLivre(int id)
 	{
-		this.idLivre=id;
+		this.id=id;
 	}
 	
 	@Override
 	public String toString() {
-		return "Livre [idLivre=" + idLivre + ", titre=" + titre + ", auteur=" + auteur + ", isbn=" + isbn + "]";
+		return "Livre [id=" + id + ", titre=" + titre + ", auteur=" + auteur + ", isbn=" + isbn + "]";
 	}
 	/*Constructeurs*/
 	public Livre()
@@ -49,7 +49,7 @@ public class Livre {
 	public Livre(String titre, String auteur, String isbn )
 	{
 	 // NOMBRE_LIVRE++;
-	  //this.idLivre=NOMBRE_LIVRE;
+	  //this.id=NOMBRE_LIVRE;
 	  this.titre= titre;
 	  this.auteur=auteur;
 	  this.isbn=isbn;
