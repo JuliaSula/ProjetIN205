@@ -5,6 +5,7 @@ import com.excilys.librarymanager.exception.ServiceException;
 import com.excilys.librarymanager.modele.Livre;
 import com.excilys.librarymanager.service.EmpruntService;
 import com.excilys.librarymanager.service.LivreService;
+import com.excilys.librarymanager.service.MembreService;
 import com.excilys.librarymanager.service.impl.EmpruntServiceImpl;
 import com.excilys.librarymanager.service.impl.LivreServiceImpl;
 import com.excilys.librarymanager.service.impl.MembreServiceImpl;
@@ -25,7 +26,7 @@ public class ServiceTest {
 //		l1.getList();
 //		l1.getListDispo();
 //		e1.getListCurrent();
-		l1.update(livre);
+//		l1.update(livre);
 		System.out.println(l1.getList());
 		//System.out.println(e1.isLivreDispo(8));
 		//System.out.println(l1.getListDispo());

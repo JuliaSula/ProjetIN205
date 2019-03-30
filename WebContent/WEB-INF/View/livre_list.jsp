@@ -39,6 +39,15 @@
                         <td class="center"><a href="livre_details?id=idDuLivre"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>
                     </tr>
                     
+                    <c:forEach items="${livres}" var = "livre">
+				        <tr>
+				            <td>" ${livre.getTitre()} "</td>
+				            <td>${livre.getAuteur()}</td>
+				            <td>${livre.getIsbn()}</td>
+				            <td class="center"><a href="livre_details?id=${livre.getIdLivre()}"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>
+				        </tr>
+			    	</c:forEach>
+                    
                     <!-- TODO : parcourir la liste des livres et les afficher selon la structure d'exemple ci-dessus -->
                 </tbody>
             </table>

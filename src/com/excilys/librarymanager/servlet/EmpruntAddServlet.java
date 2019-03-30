@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.excilys.librarymanager.exception.ServiceException;
-import com.excilys.librarymanager.modele.Emprunt;
 import com.excilys.librarymanager.modele.Livre;
 import com.excilys.librarymanager.modele.Membre;
 import com.excilys.librarymanager.service.EmpruntService;
