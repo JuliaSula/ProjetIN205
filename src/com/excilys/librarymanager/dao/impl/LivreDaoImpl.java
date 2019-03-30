@@ -54,7 +54,7 @@ public class LivreDaoImpl implements LivreDao{
 	         livre.setIdLivre(rs.getInt("id"));
 	         livreList.add(livre);
 	         }
-	         System.out.println("GET: " + livreList);
+	     //    System.out.println("GET: " + livreList);
 		} 
 		catch (SQLException e) {
 			throw new DaoException("Problème lors de la récupération de la liste des livres", e);

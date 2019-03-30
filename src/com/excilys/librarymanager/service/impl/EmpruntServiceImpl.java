@@ -129,7 +129,7 @@ public class EmpruntServiceImpl implements EmpruntService{
 		EmpruntDao empruntDao = EmpruntDaoImpl.getInstance();
 	try {
 		/*Verifie si le livre choisi est en la liste d`emprunts atuale sinon reponde true*/
-		return empruntDao.getListCurrentByLivre(idLivre)==null;
+		return empruntDao.getListCurrentByLivre(idLivre).isEmpty();
 	}	catch (DaoException e1) {
 		throw new ServiceException(e1.getMessage(), e1);
 	//	System.out.println(e1.getMessage());			
