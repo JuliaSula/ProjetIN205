@@ -42,7 +42,15 @@
                 <td class="hide-on-small-only">Téléphone du membre</td>
                 <td class="center"><a href="membre_details?id=idDuMembre"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>
               </tr>
-
+				<c:forEach items="${membres}" var = "membre">
+				        <tr>
+				            <td>${membre.getMembreNom()}</td><td>${membre.getMembrePrenom()}</td>
+				            <td>${membre.getMembreAdresse()} </td><td>${membre.getMembreMail()}</td>
+				            <td>${membre.getMembreTelephone()}</td>
+				            <td class="center"> <a href="membre_details?id=idDuMembre"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>	            
+                       		</td>
+				        </tr>
+			    	</c:forEach>
               <!-- TODO : parcourir la liste des membres et les afficher selon la structure d'exemple ci-dessus -->
             </tbody>
           </table>

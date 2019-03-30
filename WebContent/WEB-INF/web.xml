@@ -37,6 +37,33 @@ id="WebApp_ID" version="3.1">
 <servlet-name>EmpruntListServlet</servlet-name>
 <url-pattern>/emprunt_list</url-pattern>
 </servlet-mapping>
+
+  <servlet>
+<servlet-name>MembreListServlet</servlet-name>
+<servlet-class>com.excilys.librarymanager.servlet.MembreListServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>MembreListServlet</servlet-name>
+<url-pattern>/membre_list</url-pattern>
+</servlet-mapping>
+
+  <servlet>
+<servlet-name>MembreAddServlet</servlet-name>
+<servlet-class>com.excilys.librarymanager.servlet.MembreAddServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>MembreAddServlet</servlet-name>
+<url-pattern>/membre_add</url-pattern>
+</servlet-mapping>
+
+ <servlet>
+<servlet-name>EmpruntReturnServlet</servlet-name>
+<servlet-class>com.excilys.librarymanager.servlet.EmpruntReturnServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>EmpruntReturnServlet</servlet-name>
+<url-pattern>/emprunt_return</url-pattern>
+</servlet-mapping>
   
   
 </web-app>

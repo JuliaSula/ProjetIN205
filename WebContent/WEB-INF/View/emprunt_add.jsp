@@ -23,7 +23,7 @@
       <div class="container">
         <h5>Sélectionnez le livre et le membre emprunteur</h5>
         <div class="row">
-	      <form action="/LibraryManager/emprunt_add" method="post" class="col s12">
+	      <form action="emprunt_add" method="post" class="col s12">
 	        <div class="row">
 	          <div class="input-field col s6">
 	            <select id="idLivre" name="idLivre" class="browser-default">
@@ -32,7 +32,7 @@
                   	<option value="${livre.getIdLivre()}">${livre.getTitre()} ${livre.getAuteur()}</option>
 	              </c:forEach>
 	              <!-- TODO : parcourir la liste des livres disponibles et afficher autant d'options que nécessaire, sur la base de l'exemple ci-dessous -->
-                  <option value="idDuLivre">"Titre du livre", de Nom de l'auteur</option>
+                  <option value="idLivre">"Titre du livre", de Nom de l'auteur</option>
 	            </select>
 	          </div>
 	          <div class="input-field col s6">

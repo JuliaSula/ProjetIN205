@@ -104,6 +104,8 @@ public class EmpruntServiceImpl implements EmpruntService{
 		Emprunt emprunt= empruntDao.getById(id);
 		emprunt.setDateRetour(LocalDate.now());
 		empruntDao.update(emprunt);
+		
+		
 	   }catch(DaoException e1)
 	   {
 		   System.out.println(e1.getMessage());

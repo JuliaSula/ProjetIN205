@@ -23,7 +23,7 @@
       <div class="container">
       <h5>Création d'un nouveau membre</h5>
         <div class="row">
-	      <form action="/LibraryManager/membre_add" method="post" class="col s12">
+	      <form action="membre_add" method="post" class="col s12">
 	        <div class="row">
 	          <div class="input-field col s6">
 	            <input id="nom" type="text" name="nom">

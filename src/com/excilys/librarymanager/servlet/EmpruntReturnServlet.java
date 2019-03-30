@@ -1,7 +1,6 @@
 package com.excilys.librarymanager.servlet;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,62 +21,52 @@ import com.excilys.librarymanager.service.impl.EmpruntServiceImpl;
 import com.excilys.librarymanager.service.impl.LivreServiceImpl;
 import com.excilys.librarymanager.service.impl.MembreServiceImpl;
 
-public class EmpruntAddServlet extends HttpServlet{
-	@Override
+public class EmpruntReturnServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getServletPath();
-			addEmprunt(request, response);
-			System.out.println("Default redirecting case from " + action + " !");
-			
+			returnEmprunt(request, response);
+			System.out.println("Default redirecting case from  !");
 	}
-	
-	private void addEmprunt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void returnEmprunt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/*Creations des instances necessaires*/
-		//EmpruntService empruntService = EmpruntServiceImpl.getInstance();
-		LivreService livreService = LivreServiceImpl.getInstance();
-		MembreService membreService = MembreServiceImpl.getInstance();
-		List<Membre> membreList = new ArrayList<>();
-		List<Livre> livreList = new ArrayList<>();
+		EmpruntService empruntService = EmpruntServiceImpl.getInstance();
+		int id=-1;
+		List<Emprunt> empruntList = new ArrayList<>();
 		try {
 			/*Appele les fonctions pour remplir chaque atribut*/
-			membreList = membreService.getListMembreEmpruntPossible();
-			livreList= livreService.getListDispo();
+			empruntList = empruntService.getListCurrent();
 			
 		}catch (ServiceException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 		/*Configure chaque atribut dans la page html*/
-		request.setAttribute("livres", livreList);
-		request.setAttribute("membres", membreList);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/emprunt_add.jsp");
+		request.setAttribute("emprunts", empruntList);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/emprunt_return.jsp");
 		dispatcher.forward(request, response);
 	}
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String action = request.getServletPath();
-		
 		EmpruntService empruntService = EmpruntServiceImpl.getInstance();
-		int idMembre = -1;
-		int idLivre = -1;
-		System.out.println("teste1");
+		int id = -1;
 		try {
-			/*Appele les fonctions pour remplir chaque atribut*/
+			System.out.println("teste1");
+			id = Integer.parseInt(request.getParameter("id"));
 			System.out.println("teste2");
-			idMembre = Integer.parseInt(request.getParameter("idMembre"));
-			idLivre = Integer.parseInt(request.getParameter("idLivre"));
-			empruntService.create(idMembre, idLivre, LocalDate.now());			
-		}catch (ServiceException e) {
-		//	System.out.println(e.getMessage());
+			empruntService.returnBook(id);
+		} catch (ServiceException e) {
 			System.out.println("teste3");
+			System.out.println(e.getMessage());
 			e.printStackTrace();
-			throw new ServletException(e.getMessage(),e);
-		}
+	    }
 		System.out.println("teste4");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("emprunt_list");
-		System.out.println("teste5");
-		dispatcher.forward(request, response);	
-		 //response.sendRedirect("/emprunt_list");
-	
+		System.out.println("teste4");
+		dispatcher.forward(request, response);
+		System.out.println("teste4");
+		
+		
 	}
 }
+
+
