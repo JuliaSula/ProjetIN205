@@ -50,20 +50,21 @@ public class EmpruntReturnServlet extends HttpServlet{
 		EmpruntService empruntService = EmpruntServiceImpl.getInstance();
 		int id = -1;
 		try {
-			System.out.println("teste1");
+			//System.out.println("teste1");
+			/*Recupere l'id*/
 			id = Integer.parseInt(request.getParameter("id"));
-			System.out.println("teste2");
-			empruntService.returnBook(id);
+			//System.out.println("teste2");
+			empruntService.returnBook(id);  /*Appel fonction service*/
 		} catch (ServiceException e) {
-			System.out.println("teste3");
+			//System.out.println("teste3");
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 	    }
-		System.out.println("teste4");
+		//System.out.println("teste4");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("emprunt_list");
-		System.out.println("teste4");
+		//System.out.println("teste4");
 		dispatcher.forward(request, response);
-		System.out.println("teste4");
+		//System.out.println("teste4");
 		
 		
 	}

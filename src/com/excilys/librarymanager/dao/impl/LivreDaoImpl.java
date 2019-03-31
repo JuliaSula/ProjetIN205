@@ -179,7 +179,7 @@ public class LivreDaoImpl implements LivreDao{
 			preparedStatement.setInt(4, livre.getIdLivre());
 			preparedStatement.executeUpdate();
 			
-			System.out.println("UPDATE: " + livre);
+			//System.out.println("UPDATE: " + livre);
 		}
 	catch (SQLException e) {
 		throw new DaoException("Probleme lors de la mise a jour du livre: " + livre, e);
@@ -211,7 +211,7 @@ public class LivreDaoImpl implements LivreDao{
 			preparedStatement.executeUpdate();
 			preparedStatement.close();
 			connection.close();
-			System.out.println("DELETE: " + id);
+			//System.out.println("DELETE: " + id);
 			}catch (SQLException e) {
 				throw new DaoException("Problème lors de la suppression du film: "+id, e);
 			}  finally {

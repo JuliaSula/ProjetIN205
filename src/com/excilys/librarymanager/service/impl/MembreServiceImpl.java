@@ -68,7 +68,7 @@ public class MembreServiceImpl implements MembreService{
 		MembreDao membreDao = MembreDaoImpl.getInstance();
 		int i = -1;
 		/*Empeche la creation de membres sans nombre e prenom*/
-		if (nom == null || prenom == null) {
+		if (nom == "" || prenom == ""||nom == null || prenom == null) {
 			throw new ServiceException("Le nom et le nom doivent etre completes");
 		}
 		try {
@@ -82,7 +82,7 @@ public class MembreServiceImpl implements MembreService{
 	@Override
 	public void update(Membre membre) throws ServiceException {
 		MembreDao membreDao = MembreDaoImpl.getInstance();
-		if (membre.getMembreNom() == null || membre.getMembrePrenom() == null) {
+		if (membre.getMembreNom() == "" || membre.getMembrePrenom() == ""||membre.getMembreNom() == null || membre.getMembrePrenom() == null) {
 			throw new ServiceException("Le nom et le nom doivent etre completes");
 		}
 		try {

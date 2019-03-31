@@ -38,6 +38,7 @@ public class LivreDeleteServlet extends HttpServlet{
 		int idLivre = -1;
 		try {
 			idLivre = Integer.parseInt(request.getParameter("id"));
+			/*Verification de livre dispo*/
 			isLivreDispo = empruntService.isLivreDispo(idLivre);
 			livre  = livreService.getById(idLivre);
 		} catch (ServiceException e) {

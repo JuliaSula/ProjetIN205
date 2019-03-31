@@ -67,7 +67,7 @@
               <tbody id="results">
 
                 
-                 <c:forEach items="${empruntsById}" var = "emprunt">
+                 <c:forEach items="${emprunts}" var = "emprunt">
 				        <tr>
 				            <td> ${emprunt.getMembre().getMembrePrenom()} ${emprunt.getMembre().getMembreNom()} </td>
 				            <td>${emprunt.getDateEmprunt()}</td>

@@ -54,27 +54,27 @@ public class EmpruntAddServlet extends HttpServlet{
 	}
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String action = request.getServletPath();
-		
 		EmpruntService empruntService = EmpruntServiceImpl.getInstance();
 		int idMembre = -1;
 		int idLivre = -1;
 		System.out.println("teste1");
 		try {
 			/*Appele les fonctions pour remplir chaque atribut*/
-			System.out.println("teste2");
+			//System.out.println("teste2");
 			idMembre = Integer.parseInt(request.getParameter("idMembre"));
 			idLivre = Integer.parseInt(request.getParameter("idLivre"));
 			empruntService.create(idMembre, idLivre, LocalDate.now());			
 		}catch (ServiceException e) {
 		//	System.out.println(e.getMessage());
-			System.out.println("teste3");
+			//System.out.println("teste3");
 			e.printStackTrace();
 			throw new ServletException(e.getMessage(),e);
 		}
-		System.out.println("teste4");
+		//System.out.println("teste4");
+		/*Redirecione pour le liste*/
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("emprunt_list");
-		System.out.println("teste5");
+		//System.out.println("teste5");
 		dispatcher.forward(request, response);	
 		 //response.sendRedirect("/emprunt_list");
 	

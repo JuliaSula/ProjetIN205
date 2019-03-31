@@ -68,7 +68,7 @@ public class LivreServiceImpl implements LivreService{
 		LivreDao livreDao = LivreDaoImpl.getInstance();
 		int i = -1;
 		/*Empeche la creation de titres nulles*/
-		if (titre == null) {
+		if (titre == null||titre=="") {
 			throw new ServiceException("Titre non informe");
 		}
 		try {
@@ -85,7 +85,7 @@ public class LivreServiceImpl implements LivreService{
 	public void update(Livre livre) throws ServiceException {
 		LivreDao livreDao = LivreDaoImpl.getInstance();
 		/*Empeche l'update de titres nulles*/
-		if (livre.getTitre() == null) {
+		if (livre.getTitre() == null||livre.getTitre()=="") {
 			throw new ServiceException("Titre non informe");
 		}
 		try {

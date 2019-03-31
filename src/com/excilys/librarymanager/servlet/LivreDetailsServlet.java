@@ -37,14 +37,14 @@ public class LivreDetailsServlet extends HttpServlet {
 	private void livreDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LivreService livreService = LivreServiceImpl.getInstance();
 		EmpruntService empruntService = EmpruntServiceImpl.getInstance();
-		List<Emprunt> empruntById= new ArrayList<>();
+		List<Emprunt> emprunts= new ArrayList<>();
 		
 		int idLivre = -1;
 		Livre livre = new Livre();
 		try {
 			idLivre = Integer.parseInt(request.getParameter("id"));
 			livre = livreService.getById(idLivre);
-			empruntById = empruntService.getListCurrentByLivre(idLivre);
+			emprunts = empruntService.getListCurrentByLivre(idLivre);
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
@@ -52,7 +52,7 @@ public class LivreDetailsServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("livre", livre);
-		request.setAttribute("empruntsById", empruntById);
+		request.setAttribute("emprunts", emprunts);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/livre_details.jsp");
 		dispatcher.forward(request, response);
 

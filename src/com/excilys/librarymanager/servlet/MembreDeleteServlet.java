@@ -34,7 +34,6 @@ public class MembreDeleteServlet extends HttpServlet{
 	}
 	
 	private void deleteMembre(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("--------DOPGET------------LIVRE_DELETE");
 		MembreService membreService = MembreServiceImpl.getInstance();
 		EmpruntService empruntService = EmpruntServiceImpl.getInstance();
 		List<Emprunt> emprunts = new ArrayList<>();
@@ -61,7 +60,7 @@ public class MembreDeleteServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("--------DOPOST------------LIVRE_DELETE");
+	
 		MembreService membreService = MembreServiceImpl.getInstance();
 		int idMembre = -1;
 		try {
