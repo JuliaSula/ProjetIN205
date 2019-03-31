@@ -14,19 +14,20 @@ import com.excilys.librarymanager.service.EmpruntService;
 
 
 public class EmpruntServiceImpl implements EmpruntService{
-
+	/*Architeture Singleton*/
 	private static EmpruntServiceImpl instance = new EmpruntServiceImpl();
 	private EmpruntServiceImpl() { }	
 	public static EmpruntService getInstance() {		
 		return instance;
 	}
 	
+	/*Get list emprunt couche services*/
 	@Override
 	public List<Emprunt> getList() throws ServiceException {
 		EmpruntDao empruntDao = EmpruntDaoImpl.getInstance();
 		List<Emprunt> emprunts = new ArrayList<>();		
 		try {
-			emprunts = empruntDao.getList();
+			emprunts = empruntDao.getList(); 	/*Appel fonction dao*/
 		} catch (DaoException e1) {
 			throw new ServiceException(e1.getMessage(), e1);
 			//System.out.println(e1.getMessage());			
@@ -34,6 +35,7 @@ public class EmpruntServiceImpl implements EmpruntService{
 		return emprunts;
 	}
 	
+	/*Get list current emprunt couche services*/
 	@Override
 	public List<Emprunt> getListCurrent() throws ServiceException {
 		EmpruntDao empruntDao = EmpruntDaoImpl.getInstance();
@@ -47,6 +49,7 @@ public class EmpruntServiceImpl implements EmpruntService{
 		return emprunts;
 	}
 
+	/*Get list emprunt couche services current by member*/
 	@Override
 	public List<Emprunt> getListCurrentByMembre(int idMembre) throws ServiceException {
 		EmpruntDao empruntDao = EmpruntDaoImpl.getInstance();
@@ -97,13 +100,14 @@ public class EmpruntServiceImpl implements EmpruntService{
 		}
 	}
 
+	/*Return Book*/
 	@Override
 	public void returnBook(int id) throws ServiceException {
 		EmpruntDao empruntDao = EmpruntDaoImpl.getInstance();
 	   try {
-		Emprunt emprunt= empruntDao.getById(id);
-		emprunt.setDateRetour(LocalDate.now());
-		empruntDao.update(emprunt);
+		Emprunt emprunt= empruntDao.getById(id); 
+		emprunt.setDateRetour(LocalDate.now());/*Configure la date de retour*/
+		empruntDao.update(emprunt);/*Update*/
 		
 		
 	   }catch(DaoException e1)
@@ -142,6 +146,7 @@ public class EmpruntServiceImpl implements EmpruntService{
 	public boolean isEmpruntPossible(Membre membre) throws ServiceException {
 		EmpruntDao empruntDao = EmpruntDaoImpl.getInstance();
 		int i=-1;
+		/*Defini le nombre maximum de livre pour personne*/
 		try {
 			switch(membre.getMembreAbonnement()) {
 				case BASIC: i=1;break;

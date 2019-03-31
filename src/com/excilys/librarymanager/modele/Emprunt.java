@@ -81,7 +81,7 @@ public void setDateEmprunt(LocalDate dateEmprunt)
 	}
 
 
-
+/*Constructeur*/
 public Emprunt()
 {}
 
@@ -93,6 +93,7 @@ public Emprunt(Membre membre, Livre livre, LocalDate dateEmprunt)
 	this.dateEmprunt=dateEmprunt;
 	
 }
+/*ToString*/
 @Override
 public String toString() {
 	return "Emprunt [idEmprunt=" + idEmprunt + ", livre= " + livre.getIdLivre()+" titre= "+livre.getTitre() + ", membre= " + membre.getIdMembre() + " nom= "+membre.getMembreNom()+", dateEmprunt= "

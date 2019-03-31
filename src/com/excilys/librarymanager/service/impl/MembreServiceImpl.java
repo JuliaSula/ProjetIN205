@@ -14,6 +14,7 @@ import com.excilys.librarymanager.service.MembreService;
 
 public class MembreServiceImpl implements MembreService{
 
+	/*Architecture Singleton*/
 	private static MembreServiceImpl instance = new MembreServiceImpl();
 	private MembreServiceImpl() { }	
 	public static MembreService getInstance() {		
@@ -22,7 +23,7 @@ public class MembreServiceImpl implements MembreService{
 
 	@Override
 	public List<Membre> getList() throws ServiceException {
-		MembreDao membreDao = MembreDaoImpl.getInstance();//Appele l`intance de dao
+		MembreDao membreDao = MembreDaoImpl.getInstance();//Appele l'instance de dao
 		List<Membre> membres = new ArrayList<>();		
 		try {
 			membres = membreDao.getList();
@@ -38,6 +39,7 @@ public class MembreServiceImpl implements MembreService{
 		List<Membre> membreList = new ArrayList<>();
 		MembreDao membreDao = MembreDaoImpl.getInstance();
 		try {
+			/*Verifie si le emprunt est possible- utilise is Emprunt possible*/
 			for (int i = 0; i < membreDao.getList().size(); i++) {
 					if(empruntService.isEmpruntPossible(membreDao.getList().get(i)))
 						membreList.add(membreDao.getList().get(i));	
@@ -65,6 +67,7 @@ public class MembreServiceImpl implements MembreService{
 			throws ServiceException {
 		MembreDao membreDao = MembreDaoImpl.getInstance();
 		int i = -1;
+		/*Empeche la creation de membres sans nombre e prenom*/
 		if (nom == null || prenom == null) {
 			throw new ServiceException("Le nom et le nom doivent etre completes");
 		}

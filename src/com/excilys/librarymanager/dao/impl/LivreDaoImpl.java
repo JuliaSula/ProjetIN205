@@ -31,6 +31,7 @@ public class LivreDaoImpl implements LivreDao{
 	private static final String DELETE_QUERY = "DELETE FROM livre WHERE id = ?;";
 	private static final String COUNT_QUERY = "SELECT COUNT(id) AS count FROM livre;";
 	@Override
+	/*getList de livres*/
 	public List<Livre> getList() throws DaoException {
 		ArrayList<Livre> livreList = new ArrayList<>();
 		/*Objets de connexion*/
@@ -42,9 +43,6 @@ public class LivreDaoImpl implements LivreDao{
 	    	 connection = ConnectionManager.getConnection();
 		     //String SelectQuery = "SELECT * FROM livre";
 		     preparedStatement = connection.prepareStatement(GET_LIVRES_QUERY);
-	    	 
-//Pq il met pas le autocommit de le execution
-		     
 	         rs = preparedStatement.executeQuery();
 	         /*Prende des valeurs tant qu`il y a et met dans la liste*/
 	         while (rs.next()) {
@@ -58,6 +56,7 @@ public class LivreDaoImpl implements LivreDao{
 		} 
 		catch (SQLException e) {
 			throw new DaoException("Problème lors de la récupération de la liste des livres", e);
+			/*SQL->DaoException*/
 		}finally {
 			try{
 				rs.close();
@@ -74,7 +73,6 @@ public class LivreDaoImpl implements LivreDao{
 				e.printStackTrace();
 			}
 		} 
-	   //return film;
 		return livreList;
 	}
 
@@ -122,6 +120,7 @@ public class LivreDaoImpl implements LivreDao{
 			return livre;
 	} 
 	
+	/*Creation d'objet Livre*/
 	@Override
 	public int create(String titre, String auteur, String isbn) throws DaoException {
 		int id=-1;
@@ -141,7 +140,7 @@ public class LivreDaoImpl implements LivreDao{
 				id = res.getInt(1);				
 			}
 
-			System.out.println("CREATE: " + titre);
+			//System.out.println("CREATE: " + titre);
 			}catch (SQLException e) {
 			throw new DaoException("Probleme lors de la creation du livre: " , e);}
 			finally {
@@ -165,6 +164,7 @@ public class LivreDaoImpl implements LivreDao{
 		}
 	
 	@Override
+	/*Update du Livre*/
 	public void update(Livre livre) throws DaoException {
 		//ResultSet rs=null;
 		Connection connection=null;
@@ -198,6 +198,7 @@ public class LivreDaoImpl implements LivreDao{
 	}
 	}
 
+	/*Deleter de la base de donne*/
 	@Override
 	public void delete(int id) throws DaoException {
 		Connection connection=null;

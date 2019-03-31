@@ -75,15 +75,7 @@
                     </tr>
                 </thead>
                 <tbody id="results">
-                
-                    <tr>
-                        <td>Titre du livre, <em> de Nom de l'auteur</em></td>
-                        <td>Prénom et nom du membre emprunteur</td>
-                        <td>Date de l'emprunt</td>
-                        <td>
-                            <a href="emprunt_return?id=idDeLEmprunt"><ion-icon class="table-item" name="log-in"></a>
-                        </td>
-                    </tr>
+              
                      <c:forEach items="${emprunts}" var = "emprunt">
 				        <tr>
 				            <td>${emprunt.getLivre().getTitre()},<em>${emprunt.getLivre().getAuteur()}</em></td>

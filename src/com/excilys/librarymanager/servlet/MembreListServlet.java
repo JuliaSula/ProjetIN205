@@ -44,15 +44,9 @@ public class MembreListServlet extends HttpServlet{
 
 		/*Creation des atributs qui seront affiches*/
 		List<Membre> membreList = new ArrayList<>();
-		int nEmprunt = -1;
-		//int nLivre = -1;
 		try {
 			/*Appele les fonctions pour remplir chaque atribut*/
 				membreList=membreService.getList();
-
-			//nEmprunt = empruntService.count();
-			//nLivre = livreService.count();
-			//nMembre = membreService.count();
 			
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());

@@ -22,6 +22,8 @@ public class Livre {
 		return this.id;
 	}
 	
+	/*Fonctions du type Set*/
+	/*SETTERS*/
 	public void setTitre(String titre)
 	{
 		this.titre=titre;
@@ -39,6 +41,7 @@ public class Livre {
 		this.id=id;
 	}
 	
+	/*Format toString*/
 	@Override
 	public String toString() {
 		return "Livre [id=" + id + ", titre=" + titre + ", auteur=" + auteur + ", isbn=" + isbn + "]";

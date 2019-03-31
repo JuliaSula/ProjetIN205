@@ -32,12 +32,7 @@
                 </thead>
                 <tbody>
                 
-                    <tr>
-                        <td>Titre du livre</td>
-                        <td>Nom de l'auteur</td>
-                        <td>ISBN du livre</td>
-                        <td class="center"><a href="livre_details?id=idDuLivre"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>
-                    </tr>
+                
                     
                     <c:forEach items="${livres}" var = "livre">
 				        <tr>

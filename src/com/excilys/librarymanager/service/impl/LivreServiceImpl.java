@@ -37,10 +37,13 @@ public class LivreServiceImpl implements LivreService{
 		List<Livre> livreList = new ArrayList<>();
 		LivreDao livreDao = LivreDaoImpl.getInstance();
 		try {
+			/*Fait list avec le liste de livre dispo- si le livre est dispo il entre dans la liste*/
 			for (int i = 0; i < livreDao.getList().size(); i++) {
-				{		if(empruntService.isLivreDispo(livreDao.getList().get(i).getIdLivre()))
-				{	livreList.add(livreDao.getList().get(i));}	
-				}
+				{		
+					if(empruntService.isLivreDispo(livreDao.getList().get(i).getIdLivre()))
+					{	
+						livreList.add(livreDao.getList().get(i));}	
+					}
 				}
 			return livreList;
 		}catch (DaoException e1) {
@@ -64,6 +67,7 @@ public class LivreServiceImpl implements LivreService{
 	public int create(String titre, String auteur, String isbn) throws ServiceException {
 		LivreDao livreDao = LivreDaoImpl.getInstance();
 		int i = -1;
+		/*Empeche la creation de titres nulles*/
 		if (titre == null) {
 			throw new ServiceException("Titre non informe");
 		}
@@ -80,6 +84,7 @@ public class LivreServiceImpl implements LivreService{
 	@Override
 	public void update(Livre livre) throws ServiceException {
 		LivreDao livreDao = LivreDaoImpl.getInstance();
+		/*Empeche l'update de titres nulles*/
 		if (livre.getTitre() == null) {
 			throw new ServiceException("Titre non informe");
 		}
@@ -108,7 +113,6 @@ public class LivreServiceImpl implements LivreService{
 
 	@Override
 	public int count() throws ServiceException {
-		// TODO Auto-generated method stub
 		LivreDao livreDao = LivreDaoImpl.getInstance();
 		int count=-1;
 		try {

@@ -41,6 +41,7 @@ public class MembreAddServlet extends HttpServlet{
 		int idMembre = -1;
 		try {
 			idMembre = membreService.create(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("adresse"), request.getParameter("email"), request.getParameter("telephone"));
+			System.out.println(idMembre);
 			membre = membreService.getById(idMembre);
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());
@@ -48,7 +49,6 @@ public class MembreAddServlet extends HttpServlet{
 	    }
 		
 		if(idMembre!=-1) {
-			
 			request.setAttribute("membre", membre);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/membre_details.jsp");
 			dispatcher.forward(request, response);

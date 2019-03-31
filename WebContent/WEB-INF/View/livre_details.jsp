@@ -66,17 +66,10 @@
               </thead>
               <tbody id="results">
 
-                <tr>
-                  <td>Prénom et nom du membre emprunteur</td>
-                  <td>Date de l'emprunt</td>
-                  <td>
-                    <a href="emprunt_return?id=idDeLEmprunt"><ion-icon class="table-item" name="log-in"></a>
-                  </td>
-                </tr>
                 
                  <c:forEach items="${empruntsById}" var = "emprunt">
 				        <tr>
-				            <td> ${emprunt.getMembre().getPrenom()} ${emprunt.getMembre().getNom()} </td>
+				            <td> ${emprunt.getMembre().getMembrePrenom()} ${emprunt.getMembre().getMembreNom()} </td>
 				            <td>${emprunt.getDateEmprunt()}</td>
 				            <c:choose>
 							    <c:when test="${emprunt.getDateRetour() != null}">
@@ -84,7 +77,7 @@
 							    </c:when>    
 							    <c:otherwise>
 									<td>
-                            			<a href="emprunt_return?id=${emprunt.getId()}"><ion-icon class="table-item" name="log-in"></a>
+                            			<a href="emprunt_return?id=${emprunt.getIdEmprunt()}"><ion-icon class="table-item" name="log-in"></a>
                        				</td>
 							    </c:otherwise>
 							</c:choose>

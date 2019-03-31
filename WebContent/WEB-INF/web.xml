@@ -39,7 +39,6 @@ id="WebApp_ID" version="3.1">
 <servlet-name>EmpruntListServlet</servlet-name>
 <url-pattern>/emprunt_list</url-pattern>
 </servlet-mapping>
-<<<<<<< HEAD
 
   <servlet>
 <servlet-name>MembreListServlet</servlet-name>
@@ -67,21 +66,7 @@ id="WebApp_ID" version="3.1">
 <servlet-name>EmpruntReturnServlet</servlet-name>
 <url-pattern>/emprunt_return</url-pattern>
 </servlet-mapping>
-  
-  
-</web-app>
-=======
->>>>>>> 5f419a287db91836161d3ec7c3e1bbb37fefcba6
 
-
-<servlet>
-<servlet-name>EmpruntReturnServlet</servlet-name>
-<servlet-class>com.excilys.librarymanager.servlet.EmpruntReturnServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>EmpruntReturnServlet</servlet-name>
-<url-pattern>/emprunt_return</url-pattern>
-</servlet-mapping>
 
 <servlet>
 <servlet-name>LivreAddServlet</servlet-name>
@@ -99,6 +84,24 @@ id="WebApp_ID" version="3.1">
 <servlet-mapping>
 <servlet-name>LivreDetailsServlet</servlet-name>
 <url-pattern>/livre_details</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>MembreDetailsServlet</servlet-name>
+<servlet-class>com.excilys.librarymanager.servlet.MembreDetailsServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>MembreDetailsServlet</servlet-name>
+<url-pattern>/membre_details</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>MembreDeleteServlet</servlet-name>
+<servlet-class>com.excilys.librarymanager.servlet.MembreDeleteServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>MembreDeleteServlet</servlet-name>
+<url-pattern>/membre_delete</url-pattern>
 </servlet-mapping>
 
 <servlet>

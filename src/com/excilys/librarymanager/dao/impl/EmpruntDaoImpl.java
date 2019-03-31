@@ -22,63 +22,66 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		return instance;
 	}
 	/*Querys*/
+	/*Creation d'emprunt*/
 	private static final String CREATE_QUERY="INSERT INTO emprunt(idMembre, idLivre, dateEmprunt, dateRetour)\n" + 
 			"VALUES (?, ?, ?, ?);";
-	
+	/*Liste d'emprunts*/
 	private static final String GET_EMPRUNTS_QUERY = "SELECT e.id AS id, idMembre, nom, prenom, adresse, email, telephone, abonnement, idLivre, titre, auteur, isbn, dateEmprunt, dateRetour\n" + 
 			"FROM emprunt AS e\n" + 
 			"INNER JOIN membre ON membre.id = e.idMembre\n" + 
 			"INNER JOIN livre ON livre.id = e.idLivre\n" + 
 			"ORDER BY dateRetour DESC;";
-	
+	/*Emprunts par Id*/
 	private static final String GET_BY_ID_QUERY = "SELECT e.id AS idEmprunt, idMembre, nom, prenom, adresse, email, telephone, abonnement, idLivre, titre, auteur, isbn, dateEmprunt, dateRetour\n" + 
 			"FROM emprunt AS e\n" + 
 			"INNER JOIN membre ON membre.id = e.idMembre\n" + 
 			"INNER JOIN livre ON livre.id = e.idLivre\n" + 
 			"WHERE e.id = ?;";
-	
+	/*Update les dif champs d'emprunt*/
 	private static final String UPDATE_QUERY = "UPDATE emprunt \n" + 
 			"SET idMembre = ?, idLivre = ?, dateEmprunt = ?, dateRetour = ? \n" + 
 			"WHERE id = ?;";
-	
+	/*Liste d'emprunt current*/
 	private static final String GET_CURRENT_EMPRUNTS_QUERY ="SELECT e.id AS id, idMembre, nom, prenom, adresse, email, telephone, abonnement, idLivre, titre, auteur, isbn, dateEmprunt, dateRetour\n" + 
 			"FROM emprunt AS e\n" + 
 			"INNER JOIN membre ON membre.id = e.idMembre\n" + 
 			"INNER JOIN livre ON livre.id = e.idLivre\n" + 
 			"WHERE dateRetour IS NULL;";
-	
+	/*Liste d'emprunt current par membre*/
 	private static final String GET_CURRENT_EMPRUNTS_BY_MEMBRE_QUERY="SELECT e.id AS id, idMembre, nom, prenom, adresse, email, telephone, abonnement, idLivre, titre, auteur, isbn, dateEmprunt, dateRetour\n" + 
 			"FROM emprunt AS e\n" + 
 			"INNER JOIN membre ON membre.id = e.idMembre\n" + 
 			"INNER JOIN livre ON livre.id = e.idLivre\n" + 
 			"WHERE dateRetour IS NULL AND membre.id = ?;";
-	
+	/*Liste d'emprunt current par livre*/
 	private static final String GET_CURRENT_EMPRUNTS_BY_LIVRE_QUERY="SELECT e.id AS id, idMembre, nom, prenom, adresse, email, telephone, abonnement, idLivre, titre, auteur, isbn, dateEmprunt, dateRetour\n" + 
 			"FROM emprunt AS e\n" + 
 			"INNER JOIN membre ON membre.id = e.idMembre\n" + 
 			"INNER JOIN livre ON livre.id = e.idLivre\n" + 
 			"WHERE dateRetour IS NULL AND livre.id = ?;";
-	
+	/*Count des emprunts*/
 	private static final String COUNT_QUERY = "SELECT COUNT(id) AS count FROM emprunt;";
 	
-	
+	/*getList-> Retourne list d'emprunts*/
 	public List<Emprunt> getList() throws DaoException{
-	
+	/*Creation de array*/
 	ArrayList<Emprunt> empruntList = new ArrayList<Emprunt>();
+	/*Initialization des outils d'acces au BD*/
 	Connection connection = null;
 	PreparedStatement preparedStatement = null;
 	ResultSet rs=null;
 	     try {
+	    	 /*Connexion au BD*/
 	    	 connection = ConnectionManager.getConnection();
 	    	 preparedStatement = connection.prepareStatement(GET_EMPRUNTS_QUERY);
 	         rs = preparedStatement.executeQuery();
 	         
 	         while (rs.next()) {
-	        	 /*FAULT COMPLETER*/
-	        	// LocalDate dateEmprunt= new LocalDate(rs.get)
+	        	/*Creation des objets qui faisent parts d'Emprunt*/
 	         Livre livre= new Livre(rs.getString("titre"),
 	        		 				rs.getString("auteur"), 
 	        		 				rs.getString("isbn"));
+	         /*Id doit etre fait separadament*/
 	         livre.setIdLivre(rs.getInt("idLivre"));
 	         Membre m = new Membre(rs.getString("nom"), 
 					  rs.getString("prenom"),
@@ -87,17 +90,19 @@ public class EmpruntDaoImpl implements EmpruntDao{
 					  rs.getString("telephone"),
 					  Abonnement.valueOf(rs.getString("abonnement")));;
 			m.setIdMembre(rs.getInt("idMembre"));
+			/*Creation d'objet principale*/
 	         Emprunt emprunt=new Emprunt(m,livre, 
 	        		 					rs.getDate("dateEmprunt").toLocalDate());
 	         emprunt.setIdEmprunt(rs.getInt("id"));
-
+	         /*Verifie si etait deja retour si oui le configure*/
 	         if(rs.getDate("dateRetour")!=null)
 	        	 emprunt.setDateRetour(rs.getDate("dateRetour").toLocalDate());
-
+	         /*Add objet a list*/
 	         empruntList.add(emprunt);
 	         }
 	        // System.out.println("GET: " + empruntList);
 	     } catch (SQLException e) {
+	    	 	/*SQL-> DaoException*/
 				throw new DaoException("Probleme lors de la recuperation de la liste des membres", e);
 			} finally {
 				
@@ -122,7 +127,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		}
 		
 	
-	
+	/*List d'Emprunts atueles*/
 	public List<Emprunt> getListCurrent() throws DaoException{
 		ArrayList<Emprunt> empruntList = new ArrayList<Emprunt>();
 		Connection connection = null;
@@ -134,8 +139,6 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		         rs = preparedStatement.executeQuery();
 		         
 		         while (rs.next()) {
-		        	 /*FAULT COMPLETER*/
-		        	// LocalDate dateEmprunt= new LocalDate(rs.get)
 		         Livre livre= new Livre(rs.getString("titre"),
 		        		 				rs.getString("auteur"), 
 		        		 				rs.getString("isbn"));
@@ -179,6 +182,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 				return empruntList;
 		
 	}
+	/*List d'Emprunts atuales par membre*/
 	public List<Emprunt> getListCurrentByMembre(int idMembre) throws DaoException{
 		ArrayList<Emprunt> empruntList = new ArrayList<Emprunt>();
 		Connection connection = null;
@@ -236,6 +240,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		
 		
 	}
+	/*List d'Emprunts atuales par Livre*/
 	public List<Emprunt> getListCurrentByLivre(int idLivre) throws DaoException{
 		ArrayList<Emprunt> empruntList = new ArrayList<Emprunt>();
 		Connection connection = null;
@@ -295,6 +300,8 @@ public class EmpruntDaoImpl implements EmpruntDao{
 				}
 				return empruntList;
 	}
+	
+	/*List d'Emprunts par Id*/
 	public Emprunt getById(int id) throws DaoException{
 		Livre livre=new Livre();
 		Membre membre=new Membre();
@@ -356,6 +363,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		
 	}
 	
+	/*Creation de un nouveau Emprunt dans le BD*/
 	public void create(int idMembre, int idLivre, LocalDate dateEmprunt) throws DaoException{
 		
 		ResultSet rs = null;
@@ -365,6 +373,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		try {
 			connection = ConnectionManager.getConnection();
 			preparedStatement = connection.prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS);
+			/*Configuration d'Emprunt*/
 			preparedStatement.setInt(1, idMembre);
 			preparedStatement.setInt(2, idLivre);
 			preparedStatement.setDate(3, (Date.valueOf(dateEmprunt)));
@@ -375,7 +384,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 				id = rs.getInt(1);				
 			}
 
-			System.out.println("CREATE: " + id);
+			//System.out.println("CREATE: " + id);
 		} catch (SQLException e) {
 			throw new DaoException("Probleme lors de la creation du emprunt: " + e);
 		} finally {
@@ -397,6 +406,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		}
 		
 	}
+	/*Update d'Emprunt*/
 	public void update(Emprunt emprunt) throws DaoException{
 		
 		Connection connection=null;
@@ -412,7 +422,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 			preparedStatement.setInt(5, emprunt.getIdEmprunt());
 			preparedStatement.executeUpdate();
 			
-			System.out.println("UPDATE: " + emprunt);
+			//System.out.println("UPDATE: " + emprunt);
 		}
 	catch (SQLException e) {
 		throw new DaoException("Probleme lors de la mise a jour du emprunt: " + emprunt, e);
@@ -431,6 +441,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 	}
 		
 	}
+	/*Count des Emprunts*/
 	public int count() throws DaoException{
 		
 		int count=0;
