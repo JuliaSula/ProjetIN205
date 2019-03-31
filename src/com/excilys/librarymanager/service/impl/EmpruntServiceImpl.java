@@ -151,9 +151,9 @@ public class EmpruntServiceImpl implements EmpruntService{
 		/*Defini le nombre maximum de livre pour personne*/
 		try {
 			switch(membre.getMembreAbonnement()) {
-				case BASIC: i=1;break;
-				case PREMIUM:i=2;break;
-				case VIP:i=3;break;
+				case BASIC: i=2;break;
+				case PREMIUM:i=5;break;
+				case VIP:i=20;break;
 		}
 			
 			return empruntDao.getListCurrentByMembre(membre.getIdMembre()).size()<i;

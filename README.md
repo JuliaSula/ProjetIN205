@@ -28,5 +28,5 @@
 - A chaque servlet si l'option de doGet n'est pas l'espèré il retourne au index.
 
 ### Obs Taglib (Page jsp)
-- Dans le pages jsp, les plus fréquent méthodes étaient l'affichage de listes a travers du <c:forEach, et les tests pour afficher ou non les dates de retour ou une option selected.
+- Dans le pages jsp, les plus fréquent méthodes étaient l'affichage de listes a travers du forEach, et les tests pour afficher ou non les dates de retour ou une option selected.
 - De plus, on a utilisé les setParametres et getParametres pour se communiquer avec la page.
