@@ -14,6 +14,7 @@
 - On a ajouté les classes du type service qui feront l'interface entre DAO et les Servlets
 - Les fonctions des classes service appellent les fonctions DAO en ajoutant vérifications ou complétant le traitement, par exemple vérifiant si une propriété est nulle, ou transformant une update en retourne book
 - Création des exceptions service qui traitent autres données et faisant le throw des exceptions du type DAO qu'on ne peut pas  traiter
+- On a créé un package test dans le package racine avec un classe ServiceTest pour vérifier le fonctionnement des classes du service
 
 # Interface utilisateur (package servlet)
 
