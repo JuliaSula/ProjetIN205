@@ -67,15 +67,7 @@ public class EmpruntAddServlet extends HttpServlet{
 		System.out.println("teste1");
 		try {
 			/*Appele les fonctions pour remplir chaque atribut*/
-<<<<<<< HEAD
-			//System.out.println("teste2");
-			idMembre = Integer.parseInt(request.getParameter("idMembre"));
-			idLivre = Integer.parseInt(request.getParameter("idLivre"));
-			empruntService.create(idMembre, idLivre, LocalDate.now());	
-			
-=======
-			System.out.println();
-			System.out.println();
+			/*Verifie si un membre et un livre etaient selectione*/
 			if(request.getParameter("idMembre")== null || request.getParameter("idLivre")== null) {
 				throw new ServiceException("Tous les label doivent etre rempli");
 			}else {
@@ -83,7 +75,6 @@ public class EmpruntAddServlet extends HttpServlet{
 				idLivre = Integer.parseInt(request.getParameter("idLivre"));
 				empruntService.create(idMembre, idLivre, LocalDate.now());	
 			}
->>>>>>> b09f466f190a77368026f8d830f82904cb658c3d
 		}catch (ServiceException e) {
 		//	System.out.println(e.getMessage());
 			//System.out.println("teste3");

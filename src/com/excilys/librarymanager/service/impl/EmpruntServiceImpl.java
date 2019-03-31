@@ -112,7 +112,9 @@ public class EmpruntServiceImpl implements EmpruntService{
 		
 	   }catch(DaoException e1)
 	   {
+		   
 		   System.out.println(e1.getMessage());
+		   throw new ServiceException(e1.getMessage());
 	   }
 		
 	}

@@ -25,26 +25,13 @@ public class EmpruntListServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getServletPath();
 		switch (action) {
-<<<<<<< HEAD
 			case "/emprunt_list":
 				show(request, response);
 			break;
 			default:
 				System.out.println("Default redirecting case from " + action + " !");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
-				dispatcher.forward(request, response);
-		}	
-		
-=======
-		case "/emprunt_list":
-			show(request, response);
-		break;
-		default:
-			System.out.println("Default redirecting case from " + action + " !");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
-			dispatcher.forward(request, response);
->>>>>>> b09f466f190a77368026f8d830f82904cb658c3d
-	}
+				dispatcher.forward(request, response);}
 	}
 	
 	/*La servlet doit avoir les 2 methodes- doGet et doPost*/
