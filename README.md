@@ -12,6 +12,8 @@
 - On a Créé un package DAO dans le package racine de notre projet avec les trois classes qui nous sont fourni. 
 - On a Créé un package Exception dans le package racine où on a créé la classe DaoException qui hérite de la classe Exception.
 - On a ajouté trois classes dans le package Impl que on a mis dans le package DAO pour implémenter les trois interfaces demandées. 
+- Dans les classes d’implémentation on a fait des méthodes CRUD nécessaires les interfaces, aussi on a fait des méthodes pertinent pour chaque interface 
+- On a fait une classe DaoTest dans notre package test où on a testé le fonctionnement des classes des implémentation.
 
 # Manipulation des données par les services(package service)
 - On a ajouté les classes du type service qui feront l'interface entre DAO et les Servlets
