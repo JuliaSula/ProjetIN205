@@ -82,8 +82,9 @@ public class MembreServiceImpl implements MembreService{
 	@Override
 	public void update(Membre membre) throws ServiceException {
 		MembreDao membreDao = MembreDaoImpl.getInstance();
+		/*Empeche le update de membre sans nom ou prenom*/
 		if (membre.getMembreNom() == "" || membre.getMembrePrenom() == ""||membre.getMembreNom() == null || membre.getMembrePrenom() == null) {
-			throw new ServiceException("Le nom et le nom doivent etre completes");
+			throw new ServiceException("Le nom et le prenom doivent etre completes");
 		}
 		try {
 			membreDao.update(membre);

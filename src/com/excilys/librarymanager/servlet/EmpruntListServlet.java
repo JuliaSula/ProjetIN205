@@ -23,7 +23,17 @@ import com.excilys.librarymanager.service.impl.MembreServiceImpl;
 public class EmpruntListServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			show(request, response);
+		String action = request.getServletPath();
+		switch (action) {
+			case "/emprunt_list":
+				show(request, response);
+			break;
+			default:
+				System.out.println("Default redirecting case from " + action + " !");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
+				dispatcher.forward(request, response);
+		}	
+		
 	}
 	/*La servlet doit avoir les 2 methodes- doGet et doPost*/
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

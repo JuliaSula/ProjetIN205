@@ -66,14 +66,7 @@
 	        <div class="col s12">
 	          <h5>Emprunts en cours</h5>
 	          <table class="striped">
-                <thead>
-                    <tr>
-                        <th>Livre</th>
-                        <th>Membre emprunteur</th>
-                        <th>Date d'emprunt</th>
-                        <th>Retour</th>
-                    </tr>
-                </thead>
+               
                 <tbody id="results">
               
                      <c:forEach items="${emprunts}" var = "emprunt">

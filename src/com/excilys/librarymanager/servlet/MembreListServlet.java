@@ -28,7 +28,7 @@ public class MembreListServlet extends HttpServlet{
 			break;
 		default:
 			System.out.println("Default redirecting case from " + action + " !");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/index.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
 			dispatcher.forward(request, response);
 			break;
 		}

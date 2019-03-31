@@ -25,8 +25,15 @@ public class EmpruntAddServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getServletPath();
+		switch (action) {
+		case "/emprunt_add":
 			addEmprunt(request, response);
+			break;
+		default:
 			System.out.println("Default redirecting case from " + action + " !");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
+			dispatcher.forward(request, response);
+		}
 			
 	}
 	
@@ -63,7 +70,8 @@ public class EmpruntAddServlet extends HttpServlet{
 			//System.out.println("teste2");
 			idMembre = Integer.parseInt(request.getParameter("idMembre"));
 			idLivre = Integer.parseInt(request.getParameter("idLivre"));
-			empruntService.create(idMembre, idLivre, LocalDate.now());			
+			empruntService.create(idMembre, idLivre, LocalDate.now());	
+			
 		}catch (ServiceException e) {
 		//	System.out.println(e.getMessage());
 			//System.out.println("teste3");

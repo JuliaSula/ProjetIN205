@@ -28,15 +28,19 @@
 	          <div class="input-field col s12">
 	            <select id="id" name="id" class="browser-default">
 	              <option value="" disabled selected>---</option>
-	              <c:forEach items="${emprunts}" var = "emprunt">
-				        <option value="${emprunt.getIdEmprunt()}">"${emprunt.getLivre().getTitre()}" emprunt par ${emprunt.getMembre().getMembrePrenom()} ${emprunt.getMembre().getMembreNom()} </option>
+	             <c:forEach items="${emprunts}" var = "emprunt">
+	 
+							    <c:if test="${ idEmprunt == emprunt.getIdEmprunt()}">
+									 <option selected value="${emprunt.getIdEmprunt()}">"${emprunt.getLivre().getTitre()}" emprunté par ${emprunt.getMembre().getMembrePrenom()} ${emprunt.getMembre().getMembreNom()} </option>
+							    </c:if>    
+							  
+									 <option value="${emprunt.getIdEmprunt()}">"${emprunt.getLivre().getTitre()}" emprunté par ${emprunt.getMembre().getMembrePrenom()} ${emprunt.getMembre().getMembreNom()} </option>
+						
+					
+				       
 			      </c:forEach>
-			      <c:if test="${emprunt.getIdEmprunt()!=null}">
-                            	<option value="${emprunt.getIdEmprunt()}">"${emprunt.getIdEmprunt()} {emprunt.getLivre().getTitre()}" emprunt par ${emprunt.getMembre().getMembrePrenom()} ${emprunt.getMembre().getMembreNom()} </option>
-                     </c:if>
                   <!-- TODO : parcourir la liste des emprunts non rendus et afficher autant d'options que nécessaire, sur la base de l'exemple ci-dessous -->
                   <!-- TODO : si l'attribut id existe, l'option correspondante devra être sélectionnée par défaut (ajouter l'attribut selected dans la balise <option>) -->
-	             <option value="idDeLEmprunt">"Titre du livre", emprunté par Prénom et nom du membre emprunteur</option>
 	            </select>
 	          </div>
 	        </div>

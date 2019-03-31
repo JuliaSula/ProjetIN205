@@ -32,7 +32,6 @@
                   	<option value="${livre.getIdLivre()}">${livre.getTitre()} ${livre.getAuteur()}</option>
 	              </c:forEach>
 	              <!-- TODO : parcourir la liste des livres disponibles et afficher autant d'options que nécessaire, sur la base de l'exemple ci-dessous -->
-                  <option value="idLivre">"Titre du livre", de Nom de l'auteur</option>
 	            </select>
 	          </div>
 	          <div class="input-field col s6">
@@ -42,7 +41,6 @@
                   	<option value="${membre.getIdMembre()}">${membre.getMembrePrenom()} ${membre.getMembreNom()}</option>
 	              </c:forEach>
 	              <!-- TODO : parcourir la liste des membres pouvant emprunter et afficher autant d'options que nécessaire, sur la base de l'exemple ci-dessous -->
-                  <option value="idDuMembre">Prénom et nom du membre</option>
 	            </select>
 	          </div>
 	        </div>

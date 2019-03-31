@@ -24,7 +24,7 @@ public class MembreAddServlet extends HttpServlet{
 			break;
 		default:
 			System.out.println("Default redirecting case from " + action + " !");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/index.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
 			dispatcher.forward(request, response);
 	}
 	}

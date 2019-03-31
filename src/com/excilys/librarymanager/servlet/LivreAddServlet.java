@@ -25,6 +25,8 @@ public class LivreAddServlet extends HttpServlet {
 				break;
 			default:
 				System.out.println("Default redirecting case from " + action + " !");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
+				dispatcher.forward(request, response);
 		}
 	}
 	
@@ -40,7 +42,7 @@ public class LivreAddServlet extends HttpServlet {
 		int idLivre = -1;
 		try {
 			idLivre = livreService.create(request.getParameter("titre"), request.getParameter("auteur"), request.getParameter("isbn"));
-			System.out.println(idLivre);
+			//System.out.println(idLivre);
 			livre = livreService.getById(idLivre);
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());

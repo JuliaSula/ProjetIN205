@@ -27,8 +27,9 @@ public class DashboardServlet extends HttpServlet{
 			dashboard(request, response);
 			break;
 		default:
-			dashboard(request, response);
 			System.out.println("Default redirecting case from " + action + " !");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
+			dispatcher.forward(request, response);
 			
 		}
 	}	

@@ -33,7 +33,7 @@ public class MembreDetailsServlet extends HttpServlet{
 				break;
 			default:
 				System.out.println("Default redirecting case from " + action + " !");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/index.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
 				dispatcher.forward(request, response);
 		}
 	}
@@ -65,7 +65,7 @@ public class MembreDetailsServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("-------------POST--------membre_details------------");
+	
 		MembreService membreService = MembreServiceImpl.getInstance();
 		EmpruntService empruntService = EmpruntServiceImpl.getInstance();
 		List<Emprunt> emprunts= new ArrayList<>();
@@ -76,7 +76,7 @@ public class MembreDetailsServlet extends HttpServlet{
 			
 			membre = membreService.getById(idMembre);
 			membre.setMembreNom(request.getParameter("nom"));
-			membre.setMembreNom(request.getParameter("prenom"));
+			membre.setMembrePrenom(request.getParameter("prenom"));
 			membre.setMembreAbonnement(Abonnement.valueOf(request.getParameter("abonnement")));
 			membre.setMembreAdresse(request.getParameter("adresse"));
 			membre.setMembreMail(request.getParameter("email"));

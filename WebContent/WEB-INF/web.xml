@@ -4,11 +4,12 @@ xmlns="http://java.sun.com/xml/ns/javaee"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd" 
 id="WebApp_ID" version="3.1">
-  <display-name>LibraryManager</display-name>
+  
   <error-page>
     <error-code>500</error-code>
     <location>/WEB-INF/View/error_500.jsp</location>
   </error-page>
+  
   
  <servlet>
 	<servlet-name>DashboardServlet</servlet-name>
