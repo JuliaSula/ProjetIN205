@@ -28,18 +28,19 @@ public class MembreServiceImpl implements MembreService{
 		try {
 			membres = membreDao.getList();
 		} catch (DaoException e1) {
-			System.out.println(e1.getMessage());			
+			System.out.println(e1.getMessage());		
+			throw new ServiceException(e1.getMessage());
 		}
 		return membres;
 	}
 
 	@Override
 	public List<Membre> getListMembreEmpruntPossible() throws ServiceException {
-		EmpruntService empruntService = EmpruntServiceImpl.getInstance();//Appele l`intance de service
+		EmpruntService empruntService = EmpruntServiceImpl.getInstance();//Appele l`instance de service pour utiliser la verification isEmpruntPossible
 		List<Membre> membreList = new ArrayList<>();
-		MembreDao membreDao = MembreDaoImpl.getInstance();
+		MembreDao membreDao = MembreDaoImpl.getInstance();//Appele l'instance de dao
 		try {
-			/*Verifie si le emprunt est possible- utilise is Emprunt possible*/
+			/*Verifie si le emprunt est possible- si oui ajoute a list*/
 			for (int i = 0; i < membreDao.getList().size(); i++) {
 					if(empruntService.isEmpruntPossible(membreDao.getList().get(i)))
 						membreList.add(membreDao.getList().get(i));	
@@ -55,7 +56,7 @@ public class MembreServiceImpl implements MembreService{
 		MembreDao membreDao = MembreDaoImpl.getInstance();
 		Membre membre = new Membre();
 		try {
-			membre = membreDao.getById(id);
+			membre = membreDao.getById(id);     //Appele fonction Dao
 		} catch (DaoException e1) {
 			throw new ServiceException(e1.getMessage());			
 		}
@@ -72,7 +73,7 @@ public class MembreServiceImpl implements MembreService{
 			throw new ServiceException("Le nom et le nom doivent etre completes");
 		}
 		try {
-			i = membreDao.create(nom.toUpperCase(), prenom, adresse, email, telephone);
+			i = membreDao.create(nom.toUpperCase(), prenom, adresse, email, telephone); //Appele fonction Dao
 		}  catch (DaoException e1) {
 			throw new ServiceException(e1.getMessage());			
 		} 
@@ -87,7 +88,7 @@ public class MembreServiceImpl implements MembreService{
 			throw new ServiceException("Le nom et le prenom doivent etre completes");
 		}
 		try {
-			membreDao.update(membre);
+			membreDao.update(membre); //Appele fonction Dao
 		} catch (DaoException e1) {
 			throw new ServiceException(e1.getMessage());			
 		} catch (NumberFormatException e2) {
@@ -100,7 +101,7 @@ public class MembreServiceImpl implements MembreService{
 	public void delete(int id) throws ServiceException {
 		MembreDao membreDao = MembreDaoImpl.getInstance();
 		try {
-			membreDao.delete(id);
+			membreDao.delete(id); //Appele fonction Dao
 		} catch (DaoException e1) {
 			throw new ServiceException(e1.getMessage());			
 		} catch (NumberFormatException e2) {
@@ -114,7 +115,7 @@ public class MembreServiceImpl implements MembreService{
 			MembreDao membreDao = MembreDaoImpl.getInstance();
 			int count=-1;
 			try {
-			count=membreDao.count();
+			count=membreDao.count(); //Appele fonction Dao
 			} catch (DaoException e1) {
 				throw new ServiceException(e1.getMessage(), e1);	
 			} 

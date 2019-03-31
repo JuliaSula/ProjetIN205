@@ -25,9 +25,9 @@ public class LivreServiceImpl implements LivreService{
 		List<Livre> livres = new ArrayList<>();		
 		try {
 			livres = livreDao.getList();  //Appell Fonction dao
-		} catch (DaoException e1) {
+		} catch (DaoException e1) {			//Catch DaoException
 			System.out.println(e1.getMessage());	
-			throw new ServiceException(e1.getMessage());
+			throw new ServiceException(e1.getMessage());//Appel Exception
 		}
 		return livres;
 	}
@@ -47,20 +47,20 @@ public class LivreServiceImpl implements LivreService{
 					}
 				}
 			return livreList;
-		}catch (DaoException e1) {
-			throw new ServiceException(e1.getMessage());			
+		}catch (DaoException e1) {							//Catch DaoException
+			throw new ServiceException(e1.getMessage());	//Appel ServiceException
 		}
 	}
 
 	@Override
 	public Livre getById(int id) throws ServiceException {
-		LivreDao livreDao = LivreDaoImpl.getInstance();
+		LivreDao livreDao = LivreDaoImpl.getInstance();//Appele l`intance de service
 		Livre livre = new Livre();
 		try {
-			livre = livreDao.getById(id);
-		} catch (DaoException e1) {
+			livre = livreDao.getById(id);//Appell Fonction dao
+		} catch (DaoException e1) {						//Catch DaoException
 			System.out.println(e1.getMessage());	
-			throw new ServiceException(e1.getMessage());
+			throw new ServiceException(e1.getMessage());//Appel ServiceException
 		}
 		return livre;
 	}
@@ -74,12 +74,12 @@ public class LivreServiceImpl implements LivreService{
 			throw new ServiceException("Titre non informe");
 		}
 		try {
-			i = livreDao.create(titre, auteur, isbn);
-		}  catch (DaoException e1) {
+			i = livreDao.create(titre, auteur, isbn);//Appell Fonction dao
+		}  catch (DaoException e1) {				//Catch DaoException
 			System.out.println(e1.getMessage());
-			throw new ServiceException(e1.getMessage());
+			throw new ServiceException(e1.getMessage());//Appel ServiceException
 		}  catch (NullPointerException e) {
-			throw new ServiceException("Titre non informe" + e);
+			throw new ServiceException("Titre non informe" + e);//Appel ServiceException
 		}
 		return i;
 	}
@@ -89,17 +89,17 @@ public class LivreServiceImpl implements LivreService{
 		LivreDao livreDao = LivreDaoImpl.getInstance();
 		/*Empeche l'update de titres nulles*/
 		if (livre.getTitre() == null||livre.getTitre()=="") {
-			throw new ServiceException("Titre non informe");
+			throw new ServiceException("Titre non informe");//Appel ServiceException
 		}
 		try {
-			livreDao.update(livre);
-		} catch (DaoException e1) {
+			livreDao.update(livre);//Appell Fonction dao
+		} catch (DaoException e1) {					//Catch DaoException
 			System.out.println(e1.getMessage());
 			throw new ServiceException(e1.getMessage());
 		} catch (NumberFormatException e2) {
-			throw new ServiceException("Erreur lors du parsing: id=" + e2);
+			throw new ServiceException("Erreur lors du parsing: id=" + e2);//Appel ServiceException
 		}catch (NullPointerException e) {
-			throw new ServiceException("Titre non informe" + e);
+			throw new ServiceException("Titre non informe" + e);//Appel ServiceException
 		}
 	}
 
@@ -108,11 +108,11 @@ public class LivreServiceImpl implements LivreService{
 		LivreDao livreDao = LivreDaoImpl.getInstance();
 		try {
 			livreDao.delete(id);
-		} catch (DaoException e1) {
+		} catch (DaoException e1) {							//Catch DaoException
 			System.out.println(e1.getMessage());
-			throw new ServiceException(e1.getMessage());
+			throw new ServiceException(e1.getMessage());//Appel ServiceException
 		} catch (NumberFormatException e2) {
-			throw new ServiceException("Erreur lors du parsing: id=" + id, e2);
+			throw new ServiceException("Erreur lors du parsing: id=" + id, e2);//Appel ServiceException
 		}
 	}
 
@@ -121,10 +121,10 @@ public class LivreServiceImpl implements LivreService{
 		LivreDao livreDao = LivreDaoImpl.getInstance();
 		int count=-1;
 		try {
-		count=livreDao.count();
+		count=livreDao.count();//Appell Fonction dao
 		} catch (DaoException e1) {
 			System.out.println(e1.getMessage());		
-			throw new ServiceException(e1.getMessage());
+			throw new ServiceException(e1.getMessage());//Appel ServiceException
 		} 
 		return count;
 	}
